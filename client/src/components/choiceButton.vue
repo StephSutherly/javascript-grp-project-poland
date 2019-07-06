@@ -1,11 +1,12 @@
 <template>
-	<div>
-	</div>
+	<button>{{word}}
+		</button>
 </template>
 
 <script>
 export default {
-	name: 'choice-button'
+	name: 'choice-button',
+	props: ['word']
 }
 </script>
 

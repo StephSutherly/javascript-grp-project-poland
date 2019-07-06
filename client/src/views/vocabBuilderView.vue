@@ -1,6 +1,6 @@
 <template>
 	<div class="vocab-builder-view">
-		<choice-list :words="words"></choice-list>
+		<choice-list :buttonWords="buttonWords"></choice-list>
 	</div>
 </template>
 
@@ -8,16 +8,20 @@
 import ChoiceList from "@/components/choiceList.vue"
 
 export default {
+	name: "vocab-builder-view",
 	components:{
 		"choice-list": ChoiceList
 	},
 	mounted(){
-		this.words=this.getModule()
+
+		this.getModule().then( ()=>{
+			this.get_next_word()  
+		})
 	},
 	methods:{
 		getModule:function(){
-			// to be replaced with fetch
-			return [
+			// to be replaced with fetch  ////////////////////////////////////
+			this.allWords= [
 				{
 					Polish: "Hello in polish",
 					English: "Hello",
@@ -35,13 +39,65 @@ export default {
 					English: "Afternoon",
 					timesRight: 1,
 					timesWrong: 20
+				},
+				{
+					Polish: "Go away in Polish",
+					English: "Go away!!!",
+					timesRight: 2,
+					timesWrong: 5
+				},
+				{
+					Polish: "See ya later in Polish",
+					English: "See ya later",
+					timesRight: 2,
+					timesWrong: 5
+				},
+				{
+					Polish: "Smell you later in Polish",
+					English: "Smell you later",
+					timesRight: 2,
+					timesWrong: 5
+				},
+				{
+					Polish: "you suck in Polish",
+					English: "You suck!!!",
+					timesRight: 2,
+					timesWrong: 5
 				}
 			]
+		
+		const promise = new Promise(function(resolve, reject) {
+			if (true)
+				resolve();
+			else
+				reject();
+		});
+		return promise
+
+		},  ///////////////////////////
+		get_next_word:function(){
+				console.log("get next word called")
+				this.testingWords=this.get_testing_words()
+				this.buttonWords=this.get_button_words()
+				this.questionWord=this.get_question_word()
+		},
+		get_testing_words: function(){
+			return this.allWords.slice(7)
+		},
+		get_button_words: function(){
+			return this.testingWords.slice(4)
+		},
+		get_question_word: function(){
+			return this.buttonWords.slice(1)
 		}
+
 	},
 	data(){
 		return {
-			words: []
+			allWords: [],
+			testingWords: [],
+			buttonWords: [],
+			questionWord: {}
 		}
 	}
 }
