@@ -1,5 +1,5 @@
 <template>
-	<button>{{word}}
+	<button>{{word.English}}
 		</button>
 </template>
 

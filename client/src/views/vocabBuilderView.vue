@@ -14,9 +14,9 @@ export default {
 	},
 	mounted(){
 
-		this.getModule().then( ()=>{
+		this.getModule().then(
 			this.get_next_word()  
-		})
+		)
 	},
 	methods:{
 		getModule:function(){
@@ -76,19 +76,19 @@ export default {
 
 		},  ///////////////////////////
 		get_next_word:function(){
-				console.log("get next word called")
 				this.testingWords=this.get_testing_words()
 				this.buttonWords=this.get_button_words()
 				this.questionWord=this.get_question_word()
 		},
 		get_testing_words: function(){
-			return this.allWords.slice(7)
+			console.log(this.allWords.slice(0,6))
+			return this.allWords.slice(0,6)
 		},
 		get_button_words: function(){
-			return this.testingWords.slice(4)
+			return this.testingWords.slice(0,4)
 		},
 		get_question_word: function(){
-			return this.buttonWords.slice(1)
+			return this.buttonWords.slice(0,1)
 		}
 
 	},
