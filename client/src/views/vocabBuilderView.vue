@@ -1,16 +1,19 @@
 <template>
 	<div class="vocab-builder-view">
+		<builder-question :word="questionWord"></builder-question>
 		<choice-list :buttonWords="buttonWords"></choice-list>
 	</div>
 </template>
 
 <script>
 import ChoiceList from "@/components/choiceList.vue"
+import BuilderQuestion from "@/components/builderQuestion.vue"
 
 export default {
 	name: "vocab-builder-view",
 	components:{
-		"choice-list": ChoiceList
+		"choice-list": ChoiceList,
+		"builder-question": BuilderQuestion
 	},
 	mounted(){
 
@@ -20,7 +23,7 @@ export default {
 	},
 	methods:{
 		getModule:function(){
-			// to be replaced with fetch  ////////////////////////////////////
+			// to be replaced with db fetch ////////////////////////////////////
 			this.allWords= [
 				{
 					Polish: "Hello in polish",
