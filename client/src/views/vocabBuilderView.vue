@@ -17,7 +17,12 @@ export default {
 		"builder-question": BuilderQuestion
 	},
 	mounted(){
-		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) )
+		eventBus.$on('choice-button-clicked', (word) => { 
+		if (word === this.questionWord) 
+			this.gotRight() 
+		else 
+			this.gotWrong()
+		})
 		this.getModule().then(
 			this.get_next_word()
 		)
@@ -30,43 +35,57 @@ export default {
 					Polish: "hello ",
 					English: "Hello",
 					timesRight: 5,
-					timesWrong: 3
+					timesWrong: 3,
+					studyOrder: 1,
+					wordKnown: false
 				},
 				{
 					Polish: "goodbye ",
 					English: "Goodbye",
 					timesRight: 3,
-					timesWrong: 3
+					timesWrong: 3,
+					studyOrder: 2,
+					wordKnown: false
 				},
 				{
 					Polish: "afternoon ",
 					English: "Afternoon",
 					timesRight: 1,
-					timesWrong: 20
+					timesWrong: 20,
+					studyOrder: 2,
+					wordKnown: false
 				},
 				{
 					Polish: "go away ",
 					English: "Go away!!!",
 					timesRight: 2,
-					timesWrong: 5
+					timesWrong: 5,
+					studyOrder: 2,
+					wordKnown: false
 				},
 				{
 					Polish: "see ya later ",
 					English: "See ya later",
 					timesRight: 2,
-					timesWrong: 5
+					timesWrong: 5,
+					studyOrder: 2,
+					wordKnown: false
 				},
 				{
 					Polish: "smell you later ",
 					English: "Smell you later",
 					timesRight: 2,
-					timesWrong: 5
+					timesWrong: 5,
+					studyOrder: 2,
+					wordKnown: false
 				},
 				{
 					Polish: "you suck ",
 					English: "You suck!!!",
 					timesRight: 2,
-					timesWrong: 5
+					timesWrong: 5,
+					studyOrder: 2,
+					wordKnown: false
 				}
 			]
 
@@ -93,7 +112,19 @@ export default {
 		},
 		get_question_word: function(){
 			return this.buttonWords[0]
+		},
+		gotRight: function(){
+			console.log("Yey!")
+			// CSS Green class
+		},
+		gotWrong: function(){
+			console.log("Boo!")
+			// CSS Red Class
+		},
+		updateWord: function(){
+			console.log("updated")
 		}
+	
 
 	},
 	data(){
@@ -101,7 +132,8 @@ export default {
 			allWords: [],
 			testingWords: [],
 			buttonWords: [],
-			questionWord: {}
+			questionWord: {},
+			previousWord: {}
 		}
 	}
 }
