@@ -19,13 +19,13 @@ export default {
 	mounted(){
 		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) )
 		this.getModule().then(
-			this.get_next_word()  
+			this.get_next_word()
 		)
 	},
 	methods:{
 		getModule:function(){
 			// to be replaced with db fetch ////////////////////////////////////
-			this.allWords= [
+			this.allWords = [
 				{
 					Polish: "hello ",
 					English: "Hello",
@@ -69,7 +69,7 @@ export default {
 					timesWrong: 5
 				}
 			]
-		
+
 		const promise = new Promise(function(resolve, reject) {
 			if (true)
 				resolve();
@@ -110,4 +110,3 @@ export default {
 <style scoped>
 
 </style>
-
