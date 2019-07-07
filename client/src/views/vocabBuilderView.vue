@@ -24,7 +24,7 @@ export default {
 			this.gotWrong()
 		})
 		this.getModule().then(
-			this.get_next_word()
+			this.getNextWord()
 		)
 	},
 	methods:{
@@ -98,20 +98,34 @@ export default {
 		return promise
 
 		},  ///////////////////////////
-		get_next_word:function(){
-				this.testingWords=this.get_testing_words()
-				this.buttonWords=this.get_button_words()
-				this.questionWord=this.get_question_word()
+		getNextWord:function(){
+				this.testingWords=this.getTestingWords()
+				this.questionWord=this.getQuestionWord()
+				this.buttonWords=this.getButtonWords()
+				
 		},
-		get_testing_words: function(){
-			console.log(this.allWords.slice(0,6))
+		getTestingWords: function(){
 			return this.allWords.slice(0,6)
 		},
-		get_button_words: function(){
-			return this.testingWords.slice(0,4)
+		getButtonWords: function(){
+			 let tempButtonWords = []
+		 
+			//let position = this.allWords.findIndex( (word) => {this.questionWord === word})
+			let arrayWithoutQWord = this.allWords.filter( word => word!==this.questionWord )
+			let i = 0 
+			 while(i < 3){
+					i++ 
+					let wordToBeAdded = arrayWithoutQWord[Math.floor(Math.random() * arrayWithoutQWord.length)]
+					tempButtonWords.push(wordToBeAdded)
+					let pos = arrayWithoutQWord.indexOf(wordToBeAdded)
+					arrayWithoutQWord.splice(pos,1)
+			 }
+			
+			 tempButtonWords.push(this.questionWord)
+			 return tempButtonWords
 		},
-		get_question_word: function(){
-			return this.buttonWords[0]
+		getQuestionWord: function(){
+			return this.testingWords[Math.floor(Math.random() * this.testingWords.length)]
 		},
 		gotRight: function(){
 			console.log("Yey!")
