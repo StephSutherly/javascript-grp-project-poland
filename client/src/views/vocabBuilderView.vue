@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { eventBus } from '@/main.js'
 import ChoiceList from "@/components/choiceList.vue"
 import BuilderQuestion from "@/components/builderQuestion.vue"
 
@@ -26,43 +27,43 @@ export default {
 			// to be replaced with db fetch ////////////////////////////////////
 			this.allWords= [
 				{
-					Polish: "Hello in polish",
+					Polish: "hello ",
 					English: "Hello",
 					timesRight: 5,
 					timesWrong: 3
 				},
 				{
-					Polish: "Goodbye in Polish",
+					Polish: "goodbye ",
 					English: "Goodbye",
 					timesRight: 3,
 					timesWrong: 3
 				},
 				{
-					Polish: "Afternoon in polish",
+					Polish: "afternoon ",
 					English: "Afternoon",
 					timesRight: 1,
 					timesWrong: 20
 				},
 				{
-					Polish: "Go away in Polish",
+					Polish: "go away ",
 					English: "Go away!!!",
 					timesRight: 2,
 					timesWrong: 5
 				},
 				{
-					Polish: "See ya later in Polish",
+					Polish: "see ya later ",
 					English: "See ya later",
 					timesRight: 2,
 					timesWrong: 5
 				},
 				{
-					Polish: "Smell you later in Polish",
+					Polish: "smell you later ",
 					English: "Smell you later",
 					timesRight: 2,
 					timesWrong: 5
 				},
 				{
-					Polish: "you suck in Polish",
+					Polish: "you suck ",
 					English: "You suck!!!",
 					timesRight: 2,
 					timesWrong: 5
@@ -91,7 +92,7 @@ export default {
 			return this.testingWords.slice(0,4)
 		},
 		get_question_word: function(){
-			return this.buttonWords.slice(0,1)
+			return this.buttonWords[0]
 		}
 
 	},

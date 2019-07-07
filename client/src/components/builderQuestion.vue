@@ -1,6 +1,6 @@
 <template>
 	<div>
-		What is   {{word[Polish]}}   ?
+		<p v:if="word">What is {{ word.Polish }} ?</p>
 		</div>
 </template>
 
