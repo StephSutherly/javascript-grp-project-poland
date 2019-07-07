@@ -24,7 +24,7 @@ export default {
 			this.gotWrong()
 		})
 		this.getModule().then(
-			this.getNextWord()
+			this.updateWordLists()
 		)
 	},
 	methods:{
@@ -37,7 +37,7 @@ export default {
 					timesRight: 5,
 					timesWrong: 3,
 					studyOrder: 1,
-					wordKnown: false
+					isKnown: false
 				},
 				{
 					Polish: "goodbye ",
@@ -45,7 +45,7 @@ export default {
 					timesRight: 3,
 					timesWrong: 3,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: false
 				},
 				{
 					Polish: "afternoon ",
@@ -53,7 +53,7 @@ export default {
 					timesRight: 1,
 					timesWrong: 20,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: false
 				},
 				{
 					Polish: "go away ",
@@ -61,7 +61,7 @@ export default {
 					timesRight: 2,
 					timesWrong: 5,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: false
 				},
 				{
 					Polish: "see ya later ",
@@ -69,7 +69,7 @@ export default {
 					timesRight: 2,
 					timesWrong: 5,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: true
 				},
 				{
 					Polish: "smell you later ",
@@ -77,7 +77,7 @@ export default {
 					timesRight: 2,
 					timesWrong: 5,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: true
 				},
 				{
 					Polish: "you suck ",
@@ -85,7 +85,7 @@ export default {
 					timesRight: 2,
 					timesWrong: 5,
 					studyOrder: 2,
-					wordKnown: false
+					isKnown: false
 				}
 			]
 
@@ -98,10 +98,15 @@ export default {
 		return promise
 
 		},  ///////////////////////////
-		getNextWord:function(){
+		updateWordLists:function(){
 				this.testingWords=this.getTestingWords()
 				this.questionWord=this.getQuestionWord()
 				this.buttonWords=this.getButtonWords()
+				let array = this.allKnownWords() 
+				if (array.length === 0)
+					console.log('empty') 
+				for( let i = 0; i < array.length; i++)
+					console.log(array[i])
 				
 		},
 		getTestingWords: function(){
@@ -109,8 +114,6 @@ export default {
 		},
 		getButtonWords: function(){
 			 let tempButtonWords = []
-		 
-			//let position = this.allWords.findIndex( (word) => {this.questionWord === word})
 			let arrayWithoutQWord = this.allWords.filter( word => word!==this.questionWord )
 			let i = 0 
 			 while(i < 3){
@@ -120,7 +123,6 @@ export default {
 					let pos = arrayWithoutQWord.indexOf(wordToBeAdded)
 					arrayWithoutQWord.splice(pos,1)
 			 }
-			
 			 tempButtonWords.push(this.questionWord)
 			 return tempButtonWords
 		},
@@ -137,6 +139,14 @@ export default {
 		},
 		updateWord: function(){
 			console.log("updated")
+		},
+		allKnownWords: function(){
+			return this.allWords.filter( word => {
+			if (  (word.timesRight > 5 && word.timesRight > word.timesWrong) || word.isKnown  )
+				return true
+			else 
+				return false
+			})
 		}
 	
 
