@@ -2,7 +2,6 @@ const express = require('express');
 const ObjectID = require('mongodb').ObjectID;
 
 const createRouter = function(collection) {
-<<<<<<< HEAD
   const router = express.Router();
 
   // get request

@@ -24,10 +24,6 @@ export default {
 	},
 	methods:{
 		getModule: function(){
-
-			
-
-
 			// to be replaced with db fetch ////////////////////////////////////
 			this.allWords = [
 				{
