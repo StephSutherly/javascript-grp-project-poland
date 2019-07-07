@@ -23,7 +23,11 @@ export default {
 		)
 	},
 	methods:{
-		getModule:function(){
+		getModule: function(){
+
+			
+
+
 			// to be replaced with db fetch ////////////////////////////////////
 			this.allWords = [
 				{
