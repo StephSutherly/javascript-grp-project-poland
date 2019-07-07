@@ -18,28 +18,29 @@ export default {
 	},
 	mounted(){
 		// eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) );
-		fetch('http://localhost:3000/api/words')
-	    .then(res => res.json())
-			.then(data => console.log(data))
-			.catch((err) => {
-        console.error(err);
-        res.status(500);
-        res.json({ status: 500, error: err });
-      });
+		fetch("http://localhost:3000/api/words/")
+	    .then(res => console.log(res.json()))
+
+			// .then(data => console.log(data))
+			// .catch((err) => {
+      //   console.error(err);
+      //   res.status(500);
+      //   res.json({ status: 500, error: err });
+      // });
 		// this.getModule().then(
 		// 	this.get_next_word()
 		// )
 	},
 	methods:{
-		getModule:function(){
-		fetch('http://localhost:3000/api/words')
-	    .then(res => res.json())
-			.then(data => console.log(data))
-			.catch((err) => {
-        console.error(err);
-        res.status(500);
-        res.json({ status: 500, error: err });
-      });
+		// getModule:function(){
+		// fetch('http://localhost:3000/api/words')
+	  //   .then(res => res.json())
+		// 	.then(data => console.log(data))
+		// 	.catch((err) => {
+    //     console.error(err);
+    //     res.status(500);
+    //     res.json({ status: 500, error: err });
+    //   });
 
 			/* this.allWords = [
 			// 	{
@@ -94,7 +95,7 @@ export default {
 		// });
 		// return promise
 
-		},  ///////////////////////////
+		//},
 		get_next_word:function(){
 				this.testingWords=this.get_testing_words()
 				this.buttonWords=this.get_button_words()
