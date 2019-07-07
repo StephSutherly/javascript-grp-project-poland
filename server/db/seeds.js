@@ -54,14 +54,6 @@ db.words.insertMany([
 {
   Polish: "Nie",
   English: "No",
-  timesRight: 1,
-  timesWrong: 4,
-  studyOrder: 1,
-  wordKnown: true
-},
-{
-  Polish: "Nie",
-  English: "No",
   timesRight: 5,
   timesWrong: 1,
   studyOrder: 1,

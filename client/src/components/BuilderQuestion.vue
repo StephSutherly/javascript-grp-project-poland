@@ -9,6 +9,7 @@ export default {
 	name: 'builder-question',
 	props: ['word']
 }
+
 </script>
 
 <style scoped>

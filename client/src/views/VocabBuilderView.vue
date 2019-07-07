@@ -1,6 +1,6 @@
 <template>
 	<div class="vocab-builder-view">
-		<builder-question :word="questionWord"></builder-question>
+		<builder-question v-if="questionWord" :word="questionWord"></builder-question>
 		<choice-list :buttonWords="buttonWords"></choice-list>
 	</div>
 </template>
@@ -17,66 +17,82 @@ export default {
 		"builder-question": BuilderQuestion
 	},
 	mounted(){
-		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) )
-		this.getModule().then(
-			this.get_next_word()
-		)
+		// eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) );
+		fetch('http://localhost:3000/api/words')
+	    .then(res => res.json())
+			.then(data => console.log(data))
+			.catch((err) => {
+        console.error(err);
+        res.status(500);
+        res.json({ status: 500, error: err });
+      });
+		// this.getModule().then(
+		// 	this.get_next_word()
+		// )
 	},
 	methods:{
-		getModule: function(){
-			// to be replaced with db fetch ////////////////////////////////////
-			this.allWords = [
-				{
-					Polish: "hello ",
-					English: "Hello",
-					timesRight: 5,
-					timesWrong: 3
-				},
-				{
-					Polish: "goodbye ",
-					English: "Goodbye",
-					timesRight: 3,
-					timesWrong: 3
-				},
-				{
-					Polish: "afternoon ",
-					English: "Afternoon",
-					timesRight: 1,
-					timesWrong: 20
-				},
-				{
-					Polish: "go away ",
-					English: "Go away!!!",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "see ya later ",
-					English: "See ya later",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "smell you later ",
-					English: "Smell you later",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "you suck ",
-					English: "You suck!!!",
-					timesRight: 2,
-					timesWrong: 5
-				}
-			]
+		getModule:function(){
+		fetch('http://localhost:3000/api/words')
+	    .then(res => res.json())
+			.then(data => console.log(data))
+			.catch((err) => {
+        console.error(err);
+        res.status(500);
+        res.json({ status: 500, error: err });
+      });
 
-		const promise = new Promise(function(resolve, reject) {
-			if (true)
-				resolve();
-			else
-				reject();
-		});
-		return promise
+			/* this.allWords = [
+			// 	{
+			// 		Polish: "hello ",
+			// 		English: "Hello",
+			// 		timesRight: 5,
+			// 		timesWrong: 3
+			// 	},
+			// 	{
+			// 		Polish: "goodbye ",
+			// 		English: "Goodbye",
+			// 		timesRight: 3,
+			// 		timesWrong: 3
+			// 	},
+			// 	{
+			// 		Polish: "afternoon ",
+			// 		English: "Afternoon",
+			// 		timesRight: 1,
+			// 		timesWrong: 20
+			// 	},
+			// 	{
+			// 		Polish: "go away ",
+			// 		English: "Go away!!!",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "see ya later ",
+			// 		English: "See ya later",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "smell you later ",
+			// 		English: "Smell you later",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "you suck ",
+			// 		English: "You suck!!!",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	}
+			// ] */
+
+		// const promise = new Promise(function(resolve, reject) {
+		// 	if (true)
+		// 		resolve();
+		// 	else
+		// 		reject();
+		// });
+		// return promise
 
 		},  ///////////////////////////
 		get_next_word:function(){
