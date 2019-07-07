@@ -1,6 +1,6 @@
 <template>
 	<div class="vocab-builder-view">
-		<builder-question :word="questionWord"></builder-question>
+		<builder-question v-if="questionWord" :word="questionWord"></builder-question>
 		<choice-list :buttonWords="buttonWords"></choice-list>
 	</div>
 </template>
@@ -23,63 +23,55 @@ export default {
 		)
 	},
 	methods:{
-<<<<<<< HEAD
 		getModule:function(){
-    return fetch(baseURL)
+    return fetch('http://localhost:3000/api/words')
     .then(res => res.json())
-  },
-=======
-		getModule: function(){
+		.then(data => console.log(data))
 
-			
-
-
-			// to be replaced with db fetch ////////////////////////////////////
->>>>>>> origin/develop
-			this.allWords = [
-				{
-					Polish: "hello ",
-					English: "Hello",
-					timesRight: 5,
-					timesWrong: 3
-				},
-				{
-					Polish: "goodbye ",
-					English: "Goodbye",
-					timesRight: 3,
-					timesWrong: 3
-				},
-				{
-					Polish: "afternoon ",
-					English: "Afternoon",
-					timesRight: 1,
-					timesWrong: 20
-				},
-				{
-					Polish: "go away ",
-					English: "Go away!!!",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "see ya later ",
-					English: "See ya later",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "smell you later ",
-					English: "Smell you later",
-					timesRight: 2,
-					timesWrong: 5
-				},
-				{
-					Polish: "you suck ",
-					English: "You suck!!!",
-					timesRight: 2,
-					timesWrong: 5
-				}
-			]
+			// this.allWords = [
+			// 	{
+			// 		Polish: "hello ",
+			// 		English: "Hello",
+			// 		timesRight: 5,
+			// 		timesWrong: 3
+			// 	},
+			// 	{
+			// 		Polish: "goodbye ",
+			// 		English: "Goodbye",
+			// 		timesRight: 3,
+			// 		timesWrong: 3
+			// 	},
+			// 	{
+			// 		Polish: "afternoon ",
+			// 		English: "Afternoon",
+			// 		timesRight: 1,
+			// 		timesWrong: 20
+			// 	},
+			// 	{
+			// 		Polish: "go away ",
+			// 		English: "Go away!!!",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "see ya later ",
+			// 		English: "See ya later",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "smell you later ",
+			// 		English: "Smell you later",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	},
+			// 	{
+			// 		Polish: "you suck ",
+			// 		English: "You suck!!!",
+			// 		timesRight: 2,
+			// 		timesWrong: 5
+			// 	}
+			// ]
 
 		const promise = new Promise(function(resolve, reject) {
 			if (true)
