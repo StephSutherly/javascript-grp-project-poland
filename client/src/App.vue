@@ -7,14 +7,14 @@
 
 <script>
 
-import NavigationBar from '@/components/navigationBar.vue'
+import NavigationBar from '@/components/NavigationBar.vue'
 
 export default {
 	name: 'app',
 	components: {
 		'navigation-bar': NavigationBar
 	}
-	
+
 }
 </script>
 

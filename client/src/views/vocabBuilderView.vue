@@ -7,8 +7,8 @@
 
 <script>
 import { eventBus } from '@/main.js'
-import ChoiceList from "@/components/choiceList.vue"
-import BuilderQuestion from "@/components/builderQuestion.vue"
+import ChoiceList from "@/components/ChoiceList.vue"
+import BuilderQuestion from "@/components/BuilderQuestion.vue"
 
 export default {
 	name: "vocab-builder-view",
@@ -19,7 +19,7 @@ export default {
 	mounted(){
 		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) )
 		this.getModule().then(
-			this.get_next_word()  
+			this.get_next_word()
 		)
 	},
 	methods:{
@@ -69,7 +69,7 @@ export default {
 					timesWrong: 5
 				}
 			]
-		
+
 		const promise = new Promise(function(resolve, reject) {
 			if (true)
 				resolve();
@@ -110,4 +110,3 @@ export default {
 <style scoped>
 
 </style>
-

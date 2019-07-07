@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ChoiceButton from "@/components/choiceButton.vue"
+import ChoiceButton from "@/components/ChoiceButton.vue"
 
 export default {
 	name: 'choice-list',
@@ -16,11 +16,10 @@ export default {
 	components: {
 		'choice-button' : ChoiceButton
 	}
-	
+
 }
 </script>
 
 <style scoped>
 
 </style>
-
