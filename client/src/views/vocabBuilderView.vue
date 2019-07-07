@@ -1,6 +1,7 @@
 <template>
   <div class="vocab-builder-view">
     <builder-question :word="questionWord"></builder-question>
+    <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
   </div>
 </template>
@@ -9,12 +10,14 @@
 import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
+import BuilderFeedback from "@/components/BuilderFeedback.vue";
 
 export default {
   name: "vocab-builder-view",
   components: {
     "choice-list": ChoiceList,
-    "builder-question": BuilderQuestion
+    "builder-question": BuilderQuestion,
+    "builder-feedback": BuilderFeedback
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
