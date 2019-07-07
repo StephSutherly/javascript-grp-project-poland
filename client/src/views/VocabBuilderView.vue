@@ -23,10 +23,19 @@ export default {
 		)
 	},
 	methods:{
+<<<<<<< HEAD
 		getModule:function(){
     return fetch(baseURL)
     .then(res => res.json())
   },
+=======
+		getModule: function(){
+
+			
+
+
+			// to be replaced with db fetch ////////////////////////////////////
+>>>>>>> origin/develop
 			this.allWords = [
 				{
 					Polish: "hello ",

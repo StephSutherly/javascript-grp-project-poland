@@ -11,7 +11,7 @@ export default {
 	props: ['word'],
 	methods:{
 		handleClick:function(){
-			//console.log(` ${this.word.English}  was clicked!!!!!`)
+			console.log(` ${this.word.English}  was clicked!!!!!`)
 			eventBus.$emit('choice-button-clicked',this.word)
 		}
 	}
@@ -21,4 +21,3 @@ export default {
 <style scoped>
 
 </style>
-
