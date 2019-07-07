@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import vocabBuilderView from '@/views/vocabBuilderView.vue'
+import VocabBuilderView from '@/views/VocabBuilderView.vue'
 
 Vue.use(Router)
 
@@ -9,7 +9,7 @@ const router = new Router({
 		{
 			path: '/vocab_builder',
 			name: 'vocab-builder-view',
-			component: vocabBuilderView
+			component: VocabBuilderView
 		}
 
 	]

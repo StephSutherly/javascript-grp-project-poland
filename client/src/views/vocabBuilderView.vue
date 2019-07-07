@@ -7,8 +7,8 @@
 
 <script>
 import { eventBus } from '@/main.js'
-import ChoiceList from "@/components/choiceList.vue"
-import BuilderQuestion from "@/components/builderQuestion.vue"
+import ChoiceList from "@/components/ChoiceList.vue"
+import BuilderQuestion from "@/components/BuilderQuestion.vue"
 
 export default {
 	name: "vocab-builder-view",
