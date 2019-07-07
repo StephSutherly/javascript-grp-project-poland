@@ -17,7 +17,7 @@ export default {
 		"builder-question": BuilderQuestion
 	},
 	mounted(){
-
+		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) )
 		this.getModule().then(
 			this.get_next_word()  
 		)
