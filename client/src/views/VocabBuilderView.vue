@@ -24,7 +24,9 @@ export default {
 	},
 	methods:{
 		getModule:function(){
-			// to be replaced with db fetch ////////////////////////////////////
+    return fetch(baseURL)
+    .then(res => res.json())
+  },
 			this.allWords = [
 				{
 					Polish: "hello ",
