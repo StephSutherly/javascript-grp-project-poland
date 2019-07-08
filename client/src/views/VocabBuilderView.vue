@@ -48,33 +48,6 @@ export default {
       if (array.length === 0) console.log("empty");
       for (let i = 0; i < array.length; i++) console.log(array[i]);
     },
-    getTestingWords: function() {
-      return this.allWords.slice(0, 6);
-    },
-    getButtonWords: function() {
-      let tempButtonWords = [];
-      let arrayWithoutQWord = this.allWords.filter(
-        word => word !== this.questionWord
-      );
-      let i = 0;
-      while (i < 3) {
-        i++;
-        let wordToBeAdded =
-          arrayWithoutQWord[
-            Math.floor(Math.random() * arrayWithoutQWord.length)
-          ];
-        tempButtonWords.push(wordToBeAdded);
-        let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
-        arrayWithoutQWord.splice(pos, 1);
-      }
-      tempButtonWords.push(this.questionWord);
-      return tempButtonWords;
-    },
-    getQuestionWord: function() {
-      return this.testingWords[
-        Math.floor(Math.random() * this.testingWords.length)
-      ];
-    },
     gotRight: function() {
       console.log("Yey!");
       this.builderState = "won";
@@ -99,12 +72,38 @@ export default {
       });
     }
   },
+  computed: {
+    testingWords: function() {
+      return this.allWords.slice(0, 6);
+    },
+    buttonWords: function() {
+      let tempButtonWords = [];
+      let arrayWithoutQWord = this.allWords.filter(
+        word => word !== this.questionWord
+      );
+      let i = 0;
+      while (i < 3) {
+        i++;
+        let wordToBeAdded =
+          arrayWithoutQWord[
+            Math.floor(Math.random() * arrayWithoutQWord.length)
+          ];
+        tempButtonWords.push(wordToBeAdded);
+        let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
+        arrayWithoutQWord.splice(pos, 1);
+      }
+      tempButtonWords.push(this.questionWord);
+      return tempButtonWords;
+    },
+    questionWord: function() {
+      return this.testingWords[
+        Math.floor(Math.random() * this.testingWords.length)
+      ];
+    }
+  },
   data() {
     return {
       allWords: [],
-      testingWords: [],
-      buttonWords: [],
-      questionWord: {},
       previousWord: {},
       builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
     };
