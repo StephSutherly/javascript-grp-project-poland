@@ -11,7 +11,6 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
-
 export default {
   name: "vocab-builder-view",
   components: {
@@ -24,22 +23,24 @@ export default {
       if (word === this.questionWord) this.gotRight();
       else this.gotWrong();
     });
-
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
       this.getModule();
       this.builderState = "testing";
     });
-
     this.getModule();
   },
   methods: {
     getModule: function() {
       fetch("http://localhost:3000/api/words/")
         .then(res => res.json())
-        .then(data => (this.allWords = data));
+        .then(data => {
+          this.allWords = data;
+          this.updateWordLists();
+        });
     },
     updateWordLists: function() {
+      console.log("words updated!");
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
@@ -47,6 +48,33 @@ export default {
       let array = this.allKnownWords();
       if (array.length === 0) console.log("empty");
       for (let i = 0; i < array.length; i++) console.log(array[i]);
+    },
+    getTestingWords: function() {
+      return this.allWords.slice(0, 6);
+    },
+    getButtonWords: function() {
+      let tempButtonWords = [];
+      let arrayWithoutQWord = this.allWords.filter(
+        word => word !== this.questionWord
+      );
+      let i = 0;
+      while (i < 3) {
+        i++;
+        let wordToBeAdded =
+          arrayWithoutQWord[
+            Math.floor(Math.random() * arrayWithoutQWord.length)
+          ];
+        tempButtonWords.push(wordToBeAdded);
+        let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
+        arrayWithoutQWord.splice(pos, 1);
+      }
+      tempButtonWords.push(this.questionWord);
+      return tempButtonWords;
+    },
+    getQuestionWord: function() {
+      return this.testingWords[
+        Math.floor(Math.random() * this.testingWords.length)
+      ];
     },
     gotRight: function() {
       console.log("Yey!");
@@ -72,38 +100,12 @@ export default {
       });
     }
   },
-  computed: {
-    testingWords: function() {
-      return this.allWords.slice(0, 6);
-    },
-    buttonWords: function() {
-      let tempButtonWords = [];
-      let arrayWithoutQWord = this.allWords.filter(
-        word => word !== this.questionWord
-      );
-      let i = 0;
-      while (i < 3) {
-        i++;
-        let wordToBeAdded =
-          arrayWithoutQWord[
-            Math.floor(Math.random() * arrayWithoutQWord.length)
-          ];
-        tempButtonWords.push(wordToBeAdded);
-        let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
-        arrayWithoutQWord.splice(pos, 1);
-      }
-      tempButtonWords.push(this.questionWord);
-      return tempButtonWords;
-    },
-    questionWord: function() {
-      return this.testingWords[
-        Math.floor(Math.random() * this.testingWords.length)
-      ];
-    }
-  },
   data() {
     return {
       allWords: [],
+      testingWords: [],
+      buttonWords: [],
+      questionWord: {},
       previousWord: {},
       builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
     };
