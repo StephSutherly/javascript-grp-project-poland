@@ -25,7 +25,6 @@ export default {
     });
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
-      this.getModule();
       this.builderState = "testing";
     });
     this.getModule();
@@ -44,19 +43,23 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-      this.isNewModule();
       let array = this.allKnownWords();
-      if (array.length === 0) console.log("empty");
-      for (let i = 0; i < array.length; i++) console.log(array[i]);
+      // if (array.length === 0) console.log("empty");
+      // for (let i = 0; i < array.length; i++) console.log(array[i]);
     },
     isNewModule: function() {
-      let totalattempts = this.allWords.reduce((sum, word) => {
-        console.log("W", word.timesRight, "L", word.timesWrong);
+			return true
+      let totalAttempts = this.allWords.reduce((sum, word) => {
         return sum + word.timesRight + word.timesWrong;
       }, 0);
-      console.log("totalattempts: ", totalattempts);
+			if (totalAttempts === 0)
+				return true
+			return false
     },
     getTestingWords: function() {
+			if (this.isNewModule())
+				return this.allWords.filter( (word) => word.studyOrder<3 )
+
       return this.allWords.slice(0, 6);
     },
     getButtonWords: function() {
