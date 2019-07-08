@@ -44,7 +44,7 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-      this.previousWord = this.questionWord;
+
       let array = this.allKnownWords();
       if (array.length === 0) console.log("empty");
       for (let i = 0; i < array.length; i++) console.log(array[i]);
@@ -72,8 +72,13 @@ export default {
       return tempButtonWords;
     },
     getQuestionWord: function() {
-      return this.testingWords[
-        Math.floor(Math.random() * this.testingWords.length)
+      let previousWord = this.questionWord;
+      let possibleQuestionWords = this.allWords;
+      let pos = possibleQuestionWords.indexOf(previousWord);
+      possibleQuestionWords.splice(pos, 1);
+
+      return possibleQuestionWords[
+        Math.floor(Math.random() * possibleQuestionWords.length)
       ];
     },
     gotRight: function() {
@@ -106,7 +111,6 @@ export default {
       testingWords: [],
       buttonWords: [],
       questionWord: {},
-      previousWord: {},
       builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
     };
   }
