@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="handleClick">next!</button>
+  <button v-on:click="handleClick">Next</button>
 </template>
 
 <script>
