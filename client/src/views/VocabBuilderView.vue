@@ -145,5 +145,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="css" scoped>
+
+.vocab-builder-view {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat;
+  display: block;
+  height: 240px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
 </style>
