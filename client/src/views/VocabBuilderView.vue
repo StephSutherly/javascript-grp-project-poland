@@ -62,6 +62,10 @@ export default {
 				console.log("not new module!")
 				let allWordsExceptKnown =  this.allWordsExceptKnown()
 				let readyAndKnown = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
+				if (readyAndKnown.length<2)
+				{
+					
+				}
 				return readyAndKnown
 			}
     },
