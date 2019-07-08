@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
     const db = client.db('polish_words');
     const wordsCollection = db.collection('words');
-    const wordsRouter = createRouter(wordsCollection));
+    const wordsRouter = createRouter(wordsCollection);
     app.use('/api/words', wordsRouter);
   })
   .catch(console.error);
