@@ -12,7 +12,7 @@ export default {
 
 <style lang="css" scoped>
 nav {
-  background-color: #D0EAFF;
+  background-color: #80bfff;
   height: 50px;
   line-height: 50px;
 }

@@ -22,13 +22,12 @@ export default {
 button {
   color: black;
   font-family: 'Sniglet', cursive;
-  height: 50px;
   font-size: 20px;
-  display: inline-block;
-  background-color: #A5D1F3;
+  background-color: #80bfff;
   border-radius: 5px;
   border: 2px solid #a5d8f3;
   margin: 2px;
+  flex: 1;
 }
 
 button:hover {
