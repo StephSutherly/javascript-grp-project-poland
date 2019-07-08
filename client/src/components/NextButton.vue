@@ -16,6 +16,8 @@ export default {
 </script>
 
 <style scoped>
+button {
+  font-family: 'Sniglet', cursive;
+  font-size: 20px;
+}
 </style>
-
-

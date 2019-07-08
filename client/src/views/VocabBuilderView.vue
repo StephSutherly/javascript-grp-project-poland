@@ -174,5 +174,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="css" scoped>
+
+.vocab-builder-view {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+}
+
 </style>

@@ -1,9 +1,13 @@
 <template>
   <div>
+    <span>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[0]"></choice-button>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[1]"></choice-button>
+    </span>
+    <span>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[2]"></choice-button>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[3]"></choice-button>
+    </span>
     <next-button v-if="displayNextButton"></next-button>
   </div>
 </template>
@@ -35,4 +39,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
