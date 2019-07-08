@@ -1,6 +1,6 @@
 <template>
   <div class="vocab-builder-view">
-    <builder-question :word="questionWord"></builder-question>
+    <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
   </div>
@@ -26,8 +26,10 @@ export default {
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
       this.builderState = "testing";
-    });
-    this.getModule();
+		});
+
+		this.getModule();
+
   },
   methods: {
     getModule: function() {
@@ -39,7 +41,8 @@ export default {
         });
     },
     updateWordLists: function() {
-      console.log("words updated!");
+			console.log("words updated!");
+			//this.feedbackWord=this.questionWord
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
@@ -92,11 +95,13 @@ export default {
       ];
     },
     gotRight: function(word) {
+			this.feedbackWord=this.questionWord
       this.updateWord(word, true);
       this.builderState = "won";
       // CSS Green class
     },
     gotWrong: function(word) {
+			this.feedbackWord=this.questionWord
       this.updateWord(word, false);
       this.builderState = "lost";
       // CSS Red Class
@@ -114,7 +119,7 @@ export default {
 				body: JSON.stringify(payload),
 				headers: {'Content-Type':	'application/json'}
 			})
-			this.getModule()
+				.then(this.getModule())
     },
     allKnownWords: function() {
       return this.allWords.filter(word => {
@@ -132,7 +137,8 @@ export default {
       allWords: [],
       testingWords: [],
       buttonWords: [],
-      questionWord: {},
+			questionWord: {},
+			feedbackWord: {},
       builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
     };
   }
