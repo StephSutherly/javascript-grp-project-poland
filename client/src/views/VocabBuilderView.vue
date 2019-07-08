@@ -41,17 +41,14 @@ export default {
         });
     },
     updateWordLists: function() {
-			console.log("words updated!");
-			//this.feedbackWord=this.questionWord
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-      let array = this.allKnownWords();
-      // if (array.length === 0) console.log("empty");
+      // let array = this.allWordsExceptKnown();
+      // if (array.length === 0) console.log("allwordsexceptknown empty");
       // for (let i = 0; i < array.length; i++) console.log(array[i]);
     },
     isNewModule: function() {
-			return true
       let totalAttempts = this.allWords.reduce((sum, word) => {
         return sum + word.timesRight + word.timesWrong;
       }, 0);
@@ -61,9 +58,16 @@ export default {
     },
     getTestingWords: function() {
 			if (this.isNewModule())
+			{
+				console.log("new module, adding 2 words!")
 				return this.allWords.filter( (word) => word.studyOrder<3 )
-
-      return this.allWords.slice(0, 6);
+			}
+			else
+			{
+				console.log("not new module!")
+				let result =  this.allWordsExceptKnown()
+				return result
+			}
     },
     getButtonWords: function() {
       let tempButtonWords = [];
@@ -130,8 +134,15 @@ export default {
           return true;
         else return false;
       });
-    }
-  },
+		},
+		allWordsExceptKnown: function(){
+			let allKnownWords=this.allKnownWords()
+			return this.allWords.filter( word => (!allKnownWords.includes(word)))
+		},
+		timeForNewWord: function(){
+			return false
+		},
+	},
   data() {
     return {
       allWords: [],
