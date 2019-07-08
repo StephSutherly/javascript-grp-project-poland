@@ -1,4 +1,6 @@
-<template lang="html">
+<template>
+
+  <p>test for polish culture</p>
 
 </template>
 

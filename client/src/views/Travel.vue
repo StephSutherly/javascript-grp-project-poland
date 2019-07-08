@@ -1,5 +1,5 @@
 <template>
-
+  <p>Test for travel page</p>
 </template>
 
 <script>

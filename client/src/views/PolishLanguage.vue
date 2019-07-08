@@ -1,5 +1,5 @@
 <template>
-
+  <p>Test for polish language</p>
 </template>
 
 <script>
