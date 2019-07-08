@@ -132,7 +132,10 @@ export default {
 				headers: {'Content-Type':	'application/json'}
 			})
 				.then(this.getModule())
-    },
+		},
+		allKnownWords: function(){
+			return this.allWords.filter( word =>(this.wordKnown(word)) )
+		},
 		allWordsExceptKnown: function(){
 			return this.allWords.filter( word =>(!this.wordKnown(word)) )
 		},
