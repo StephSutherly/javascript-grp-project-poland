@@ -17,23 +17,8 @@ export default {
 		"builder-question": BuilderQuestion
 	},
 	mounted(){
-		// eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) );
-		fetch("http://localhost:3000/api/words/")
-	    .then(res => console.log(res.json()))
-
-			// .then(data => console.log(data))
-			// .catch((err) => {
-      //   console.error(err);
-      //   res.status(500);
-      //   res.json({ status: 500, error: err });
-      // });
-		// this.getModule().then(
-		// 	this.get_next_word()
-		// )
-	},
-	methods:{
-		// getModule:function(){
-		// fetch('http://localhost:3000/api/words')
+		eventBus.$on('choice-button-clicked',res => console.log(`choicebuttonclicked event for: ${res.English}`) );
+		// fetch("http://localhost:3000/api/words/")
 	  //   .then(res => res.json())
 		// 	.then(data => console.log(data))
 		// 	.catch((err) => {
@@ -41,6 +26,20 @@ export default {
     //     res.status(500);
     //     res.json({ status: 500, error: err });
     //   });
+		// this.getModule().then(
+		// 	console.log('All Words: ', this.allWords)
+		// );
+		this.getModule().then(
+			this.get_next_word()
+		)
+	},
+	methods: {
+		getModule:function(){
+		return fetch("http://localhost:3000/api/words/")
+	    .then(res => res.json())
+			.then(data => {
+				this.allWords = data;
+			})
 
 			/* this.allWords = [
 			// 	{
@@ -87,16 +86,17 @@ export default {
 			// 	}
 			// ] */
 
-		// const promise = new Promise(function(resolve, reject) {
-		// 	if (true)
-		// 		resolve();
-		// 	else
-		// 		reject();
-		// });
-		// return promise
+		const promise = new Promise(function(resolve, reject) {
+			if (true)
+				resolve();
+			else
+				reject();
+		});
+		return promise
 
-		//},
+		},
 		get_next_word:function(){
+				console.log(this.allWords);
 				this.testingWords=this.get_testing_words()
 				this.buttonWords=this.get_button_words()
 				this.questionWord=this.get_question_word()
