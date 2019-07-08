@@ -41,29 +41,29 @@ export default {
         });
     },
     updateWordLists: function() {
-			console.log("words updated!");
-			//this.feedbackWord=this.questionWord
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-      let array = this.allKnownWords();
-      // if (array.length === 0) console.log("empty");
-      // for (let i = 0; i < array.length; i++) console.log(array[i]);
-    },
-    isNewModule: function() {
-			return true
-      let totalAttempts = this.allWords.reduce((sum, word) => {
-        return sum + word.timesRight + word.timesWrong;
-      }, 0);
-			if (totalAttempts === 0)
-				return true
-			return false
+			let array = this.allWordsExceptKnown();
+			console.clear()
+			console.log("readyandknown = ")
+      if (array.length === 0) console.log("     readyandknown empty");
+			for (let i = 0; i < array.length; i++) 
+			console.log(array[i].English);
     },
     getTestingWords: function() {
 			if (this.isNewModule())
+			{
+				console.log("new module, adding 2 words!")
 				return this.allWords.filter( (word) => word.studyOrder<3 )
-
-      return this.allWords.slice(0, 6);
+			}
+			else
+			{
+				console.log("not new module!")
+				let allWordsExceptKnown =  this.allWordsExceptKnown()
+				let readyAndKnown = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
+				return readyAndKnown
+			}
     },
     getButtonWords: function() {
       let tempButtonWords = [];
@@ -93,6 +93,14 @@ export default {
       return possibleQuestionWords[
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
+		},
+			isNewModule: function() {
+      let totalAttempts = this.allWords.reduce((sum, word) => {
+        return sum + word.timesRight + word.timesWrong;
+      }, 0);
+			if (totalAttempts === 0)
+				return true
+			return false
     },
     gotRight: function(word) {
 			this.feedbackWord=this.questionWord
@@ -121,17 +129,26 @@ export default {
 			})
 				.then(this.getModule())
     },
-    allKnownWords: function() {
-      return this.allWords.filter(word => {
+		allWordsExceptKnown: function(){
+			return this.allWords.filter( word =>(!this.wordKnown(word)) )
+		},
+		timeForNewWord: function(){
+			return false
+		},
+		wordReady: function(word){
+			if (word.timesRight>4)
+				return true
+			return false
+		},
+		wordKnown: function(word) {
         if (
           (word.timesRight > 5 && word.timesRight > word.timesWrong) ||
           word.isKnown
         )
           return true;
         else return false;
-      });
-    }
-  },
+		}
+	},
   data() {
     return {
       allWords: [],
