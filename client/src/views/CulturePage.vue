@@ -1,5 +1,4 @@
 <template>
-
   <p>Capital: Warsaw
     Population: 38,628,927 (2016 est.)
 

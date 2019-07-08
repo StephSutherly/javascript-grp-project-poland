@@ -18,7 +18,7 @@ export default {
 <style scoped>
 button {
   color: black;
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   height: 40px;
   font-size: 20px;
   display: inline-block;

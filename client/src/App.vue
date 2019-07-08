@@ -25,14 +25,17 @@ export default {
 
 #app {
   background: url('https://live.staticflickr.com/7092/7232458062_861b20d86c_b.jpg') no-repeat;
-  height: 100%;
+  min-height: 800px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+	background-attachment: fixed;
 }
 
 footer {
+	display: fixed; 
   background-color: #606060;
+	font-family: 'Quicksand', sans-serif;
 	color: white;
   position: absolute;
   bottom: 0;
