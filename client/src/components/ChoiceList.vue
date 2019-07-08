@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="button-list">
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[0]"></choice-button>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[1]"></choice-button>
     <choice-button v-if="displayChoiceButtons" :word="buttonWords[2]"></choice-button>
@@ -35,4 +35,12 @@ export default {
 </script>
 
 <style scoped>
+
+#button-list {
+  display: flex;
+}
+
+/* choice-button {
+  flex: 2
+} */
 </style>
