@@ -33,7 +33,7 @@ export default {
 }
 
 footer {
-	display: fixed; 
+	display: fixed;
   background-color: #606060;
 	font-family: 'Quicksand', sans-serif;
 	color: white;
