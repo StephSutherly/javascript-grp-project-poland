@@ -54,7 +54,7 @@ export default {
 }
 
 .dropdown .dropbtn {
-  height: 50px;
+  height: 52px;
   line-height: 50px;
   font-size: 20px;
   display: inline-block;
@@ -66,6 +66,9 @@ export default {
   font-family: 'PT Sans', sans-serif;
   margin: 0;
 }
+.dropbtn:hover {
+  cursor: pointer; 
+}
 
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: dodgerblue;
@@ -76,13 +79,18 @@ export default {
   position: absolute;
   background-color: #990000;
   min-width: 160px;
-  top: 50px;
+  top: 58px;
 }
 .dropdown-content a {
   float: none;
   color: white;
   padding: 0px 8px;
   display: block;
+  text-align: left;
+}
+.dropbtn,
+.dropdown-content {
+  width: 200px;
   text-align: left;
 }
 
