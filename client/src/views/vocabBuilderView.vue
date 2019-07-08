@@ -148,7 +148,7 @@ export default {
       // CSS Red Class
     },
     updateWord: function() {
-      console.log("updated");
+      console.log("database updated! but not really."); ///replace with patch request
     },
     allKnownWords: function() {
       return this.allWords.filter(word => {
