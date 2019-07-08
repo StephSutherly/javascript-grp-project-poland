@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v:if="word">What is {{ word.Polish }} ?</p>
+    <p v:if="word">What is <strong>{{ word.Polish }}</strong> ?</p>
   </div>
 </template>
 
@@ -12,4 +12,10 @@ export default {
 </script>
 
 <style scoped>
+
+p {
+  font-family: 'Sniglet', cursive;
+  font-size: 20px;
+}
+
 </style>
