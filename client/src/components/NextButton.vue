@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="handleClick">next!</button>
+  <button v-on:click="handleClick">Next</button>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
 <style scoped>
 button {
   color: black;
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   height: 40px;
   font-size: 20px;
   display: inline-block;

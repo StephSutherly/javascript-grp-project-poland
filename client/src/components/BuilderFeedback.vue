@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 * {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
 }
 </style>

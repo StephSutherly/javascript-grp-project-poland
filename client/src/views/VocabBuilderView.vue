@@ -165,7 +165,8 @@ export default {
 <style lang="css" scoped>
 
 .vocab-builder-view {
-  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat;
+  /* background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat; */
+  background: linear-gradient(to bottom, rgba(255,255,255,.95) 50%, rgba(220,20,60,.95) 50%);
   display: block;
   height: 240px;
   background-position: center;
@@ -174,6 +175,7 @@ export default {
   margin: 20px;
   padding: 10px;
   border-radius: 4px;
+  font-family: 'Questrial', sans-serif;
 }
 
 </style>

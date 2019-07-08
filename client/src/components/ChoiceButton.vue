@@ -21,7 +21,7 @@ export default {
 <style lang="css" scoped>
 button {
   color: black;
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
   background-color: #80bfff;
   border-radius: 5px;
@@ -29,8 +29,8 @@ button {
   margin: 2px;
   flex: 1;
 }
-
 button:hover {
   background-color: dodgerblue;
+  cursor: pointer;
 }
 </style>
