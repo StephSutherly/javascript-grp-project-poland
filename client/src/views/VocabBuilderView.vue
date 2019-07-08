@@ -27,80 +27,18 @@ export default {
 
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
-      this.getModule().then(this.updateWordLists());
+      this.getModule();
       this.builderState = "testing";
     });
 
-    this.getModule().then(this.updateWordLists());
+    this.getModule();
   },
   methods: {
     getModule: function() {
-      // to be replaced with db fetch ////////////////////////////////////
-      this.allWords = [
-        {
-          Polish: "hello ",
-          English: "Hello",
-          timesRight: 5,
-          timesWrong: 3,
-          studyOrder: 1,
-          isKnown: false
-        },
-        {
-          Polish: "goodbye ",
-          English: "Goodbye",
-          timesRight: 3,
-          timesWrong: 3,
-          studyOrder: 2,
-          isKnown: false
-        },
-        {
-          Polish: "afternoon ",
-          English: "Afternoon",
-          timesRight: 1,
-          timesWrong: 20,
-          studyOrder: 2,
-          isKnown: false
-        },
-        {
-          Polish: "go away ",
-          English: "Go away!!!",
-          timesRight: 2,
-          timesWrong: 5,
-          studyOrder: 2,
-          isKnown: false
-        },
-        {
-          Polish: "see ya later ",
-          English: "See ya later",
-          timesRight: 2,
-          timesWrong: 5,
-          studyOrder: 2,
-          isKnown: true
-        },
-        {
-          Polish: "smell you later ",
-          English: "Smell you later",
-          timesRight: 2,
-          timesWrong: 5,
-          studyOrder: 2,
-          isKnown: true
-        },
-        {
-          Polish: "you suck ",
-          English: "You suck!!!",
-          timesRight: 2,
-          timesWrong: 5,
-          studyOrder: 2,
-          isKnown: false
-        }
-      ];
-
-      const promise = new Promise(function(resolve, reject) {
-        if (true) resolve();
-        else reject();
-      });
-      return promise;
-    }, ///////////////////////////
+      fetch("http://localhost:3000/api/words/")
+        .then(res => res.json())
+        .then(data => (this.allWords = data));
+    },
     updateWordLists: function() {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
