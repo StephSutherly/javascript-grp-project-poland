@@ -20,8 +20,8 @@ export default {
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
-      if (word === this.questionWord) this.gotRight();
-      else this.gotWrong();
+      if (word === this.questionWord) this.gotRight(word);
+      else this.gotWrong(word);
     });
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
@@ -44,10 +44,17 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-
+      this.isNewModule();
       let array = this.allKnownWords();
       if (array.length === 0) console.log("empty");
       for (let i = 0; i < array.length; i++) console.log(array[i]);
+    },
+    isNewModule: function() {
+      let totalattempts = this.allWords.reduce((sum, word) => {
+        console.log("W", word.timesRight, "L", word.timesWrong);
+        return sum + word.timesRight + word.timesWrong;
+      }, 0);
+      console.log("totalattempts: ", totalattempts);
     },
     getTestingWords: function() {
       return this.allWords.slice(0, 6);
@@ -81,18 +88,30 @@ export default {
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
     },
-    gotRight: function() {
-      console.log("Yey!");
+    gotRight: function(word) {
+      this.updateWord(word, true);
       this.builderState = "won";
       // CSS Green class
     },
-    gotWrong: function() {
-      console.log("Boo!");
+    gotWrong: function(word) {
+      this.updateWord(word, false);
       this.builderState = "lost";
       // CSS Red Class
     },
-    updateWord: function() {
-      console.log("database updated! but not really."); ///replace with patch request
+    updateWord: function(word, wasCorrect) {
+      let id =  word._id;
+      let payload;
+      if (wasCorrect == true)
+        payload = {'timesRight': word.timesRight+1};
+      else {
+        payload = {'timesWrong': word.timesWrong+1 };
+			}
+			fetch('http://localhost:3000/api/words/'+id, {
+				method: 'PATCH',
+				body: JSON.stringify(payload),
+				headers: {'Content-Type':	'application/json'}
+			})
+			this.getModule()
     },
     allKnownWords: function() {
       return this.allWords.filter(word => {
