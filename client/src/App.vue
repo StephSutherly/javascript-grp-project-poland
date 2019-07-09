@@ -23,6 +23,7 @@ export default {
 
 <style lang="css" scoped>
 
+
 #app {
   background: url('https://live.staticflickr.com/7092/7232458062_861b20d86c_b.jpg') no-repeat;
   min-height: 800px;
@@ -33,7 +34,7 @@ export default {
 }
 
 footer {
-	display: fixed; 
+	display: fixed;
   background-color: #606060;
 	font-family: 'Quicksand', sans-serif;
 	color: white;

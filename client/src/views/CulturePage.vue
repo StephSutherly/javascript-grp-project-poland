@@ -1,32 +1,19 @@
 <template>
   <div class="view_page">
-    <h2>Capital: Warsaw</h2>
-    <h3>Population: 38,628,927 (2016 est.)</h3>
-
+    <p>Capital: Warsaw</p>
+    <p>Population: 38,628,927 (2016 est.)</p>
     <p>Climate: July is the warmest month (27°C), and December
     the coldest (-10°C).</p>
-
-    <div>
-      <h4>Nationality:</h4>
-      <p>Polish 93.52%, Silesian 1.09%, German 0.28%,
+    <p>Nationality:Polish 93.52%, Silesian 1.09%, German 0.28%,
     Belarusian 0.12%, Ukrainian 0.12%, Kashubian 0.04%,
     Romani 0.03%, Other 4.80% (2011 census)</p>
-    </div>
-
-    <div>
-      <h4>Religions: </h4>(Based on 2011 survey of 91.2% of the population)
-      <p>Roman Catholic 87.5% (around 75% who are practicing),
+    <p>Religions: (Based on 2011 survey of 91.2% of the population)
+    Roman Catholic 87.5% (around 75% who are practicing),
     Opting out of responding 7.1%, Non-believer 2.4%,
     Not stated 1.6%, Eastern Orthodox 1.3%, Other religions 1%.</p>
-
-    </div>
-
     <p>Government: Republic</p>
-
     <p>Currency: Polish Zloty</p>
-
     <p>Local time: GMT+01:00</p>
-
     <p>National Holidays: Constitution Day, 1 May (1791),
     Independence Day, 11 November (1918).</p>
 
@@ -63,6 +50,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+div {
+  background: white;
+  opacity: 0.8;
+  margin: 70px;
+  border: 2px solid black;
+  padding: 15px;
+  font-family: Arial;
+  font-size: 20px;
+}
 
 
 </style>
