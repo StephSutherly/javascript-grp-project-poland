@@ -118,19 +118,42 @@ export default {
 					}
 				}
 
-				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with unready words if possible
+				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
 					let i=0
-					while (  i< (3-newTestingArray.length)   )
+					let fail=false
+					while (  i< (3-newTestingArray.length)  && fail===false )
 					{
-						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler unready words`)
-						this.addFillerUnreadyWordTo(newTestingArray)
+						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler unready words`,`i=${i}`)
+						if (!this.addFillerReadyWordTo(newTestingArray))
+							{
+								console.log("no possible unready fillers")
+								fail=true
+							}
 						i++
 					}
 				}
 				else
-					console.log(`newTestingArray length is ${newTestingArray.length}, no fillers required`)
+					console.log(`newTestingArray length is ${newTestingArray.length}, no unready fillers required`)
 
+
+				if (newTestingArray.length<3)  //if there still aren't at least 3 words to cycle through, fill up with words if possible
+				{
+					let i=0
+					let fail=false
+					while (  i< (3-newTestingArray.length)  && fail===false )
+					{
+						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler ready words`)
+						if (!this.addFillerKnownWordTo(newTestingArray))
+							{
+								console.log("no possible ready fillers")
+								fail=true
+							}
+						i++
+					}
+				}
+				else
+					console.log(`newTestingArray length is ${newTestingArray.length}, no ready fillers required`)
 
 
 				return newTestingArray
@@ -216,8 +239,29 @@ export default {
 			})
 				.then(this.getModule())
 		},
+		wordReady: function(word){
+			if (word.timesRight > 4)
+				return true
+			return false
+		},
+		wordKnown: function(word) {
+        if (
+          (word.timesRight > 5 && word.timesRight > word.timesWrong) ||
+          word.isKnown
+        )
+          return true;
+        else return false;
+		},
+		wordUntouched: function(word){
+			if (word.timesRight===0 && word.timesWrong===0)
+				return true
+			return false
+		},
+		allTouchedWordsKnown: function(){
+			return this.allWords.filter( word =>(!this.wordUntouched(word) && this.wordKnown(word)) )
+		},
 		allTouchedWordsNotKnownReady: function(){
-			return this.allWords.filter( word =>(!this.wordKnown(word) && this.wordReady(word)  ) )
+			return this.allWords.filter( word =>(!this.wordUntouched(word) && !this.wordKnown(word) && this.wordReady(word)  ) )
 		},
 		allTouchedWordsNotKnownNotReady: function(){
 			let allWordsExceptKnown=this.allWords.filter(word => (!this.wordKnown(word)))
@@ -248,9 +292,12 @@ export default {
 			else
 				return false
 		},
-		addFillerUnreadyWordTo: function(arrayToAddTo){
+		addFillerReadyWordTo: function(arrayToAddTo){
 						let possibleFillerWords = this.allTouchedWordsNotKnownReady()
-						console.log("possible filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
+						if (possibleFillerWords.length===0)
+							return false
+
+						console.log("possible ready filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
 						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
 						//console.log("newword",newWord)
@@ -258,25 +305,23 @@ export default {
 						let pos = possibleFillerWords.indexOf(newWord)
 						possibleFillerWords.splice(pos,1)
 						console.log("filler word added to testing Words:", newWord.English)
+						return true
 		},
-		wordReady: function(word){
-			if (word.timesRight > 4)
-				return true
-			return false
+		addFillerKnownWordTo: function(arrayToAddTo){
+						let possibleFillerWords = this.allTouchedWordsKnown()
+						if (possibleFillerWords.length===0)
+							return false
+
+						console.log("possible known filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
+
+						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
+						//console.log("newword",newWord)
+						arrayToAddTo.push(newWord)
+						let pos = possibleFillerWords.indexOf(newWord)
+						possibleFillerWords.splice(pos,1)
+						console.log("filler word added to testing Words:", newWord.English)
+						return true
 		},
-		wordKnown: function(word) {
-        if (
-          (word.timesRight > 5 && word.timesRight > word.timesWrong) ||
-          word.isKnown
-        )
-          return true;
-        else return false;
-		},
-		wordUntouched: function(word){
-			if (word.timesRight===0 && word.timesWrong===0)
-				return true
-			return false
-		}
 	},
   data() {
     return {
