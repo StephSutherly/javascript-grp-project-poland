@@ -45,11 +45,11 @@ export default {
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
 			let array = this.allWordsExceptKnown();
-			console.clear()
-			console.log("readyandknown = ")
-      if (array.length === 0) console.log("     readyandknown empty");
-			for (let i = 0; i < array.length; i++) 
-			console.log(array[i].English);
+			// console.clear()
+			// console.log("readyandknown = ")
+      // if (array.length === 0) console.log("     readyandknown empty");
+			// for (let i = 0; i < array.length; i++) 
+			// console.log(array[i].English);
     },
     getTestingWords: function() {
 			if (this.isNewModule())
@@ -61,12 +61,17 @@ export default {
 			{
 				console.log("not new module!")
 				let allWordsExceptKnown =  this.allWordsExceptKnown()
-				let readyAndKnown = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
-				if (readyAndKnown.length<2)
+				let newTestingArray = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
+				if (newTestingArray.length<3)
 				{
-					
+					let i=0
+					while (  i< (3-newTestingArray.length)   )
+					{
+						i++
+						addFillerWord(newTestingArray)
+					}
 				}
-				return readyAndKnown
+				return newTestingArray
 			}
     },
     getButtonWords: function() {
@@ -141,6 +146,17 @@ export default {
 		},
 		timeForNewWord: function(){
 			return false
+		},
+		addFillerWord: function(arrayToAddTo){
+						let possibleFillerWords = this.allKnownWords()
+						console.log("possfilterwords",possibleFillerWords)
+						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
+
+						console.log("newword",newWord)
+						arrayToAddTo.push(newWord)
+						let pos = possibleFillerWords.indexOf(newWord)
+						possibleFillerWords.splice(pos,1)
+						console.log("filler word added to testing Words:", newWord.English)
 		},
 		wordReady: function(word){
 			if (word.timesRight>4)
