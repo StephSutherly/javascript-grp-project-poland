@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: "builder-pause"
+  name: "builder-pause",
+  computed:{
+
+  },
+  props: ["builderState", "seenWords"]
 }
 </script>
 

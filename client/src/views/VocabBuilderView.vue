@@ -3,7 +3,7 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-    <builder-pause :builderState="builderState"></builder-pause>
+    <builder-pause :builderState="builderState" :seenWords="seenWords"></builder-pause>
   </div>
 </template>
 
