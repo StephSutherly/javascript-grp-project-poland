@@ -1,7 +1,12 @@
 <template lang="html">
   <div>
       <div v-if="displayPause" id="pause-screen">
-        <h2>You've Paused!</h2>
+        <h2>Review</h2>
+        <h3>You got {{this.percentageRight}}% Correct</h3>
+        <h5>Word List</h5>
+        <ul>
+          <li v-for="word in this.seenWords">{{ word.Polish }}</li>
+        </ul>
       </div>
       <div v-if="displayStart" id="start-screen">
         <h2>Vocabulary Builder</h2>
@@ -18,13 +23,31 @@ export default {
       if (this.builderState === "pause")
       return true
       else
-      return false},
+      return false
+    },
     displayStart: function(){
       if (this.builderState === "start")
       return true
       else
       return false
-      }
+    },
+    totalRight: function(){
+      return this.seenWords.reduce((sum, word) => {
+        return sum + word.timesRight
+      }, 0);
+    },
+    totalWrong: function(){
+      return this.seenWords.reduce((sum, word) => {
+        return sum + word.timesWrong
+      }, 0);
+    },
+    percentageRight: function(){
+      let total = this.totalRight + this.totalWrong;
+      return Math.round((this.totalRight / total)*100);
+    },
+    sortedSeenWords: function(){
+      return this.seenWords.sort((firstWord, secondWord) => ( firstWord.timesRight / (firstWord.timesRight + firstWord.timesWrong) ) - ( secondWord.timesRight / (secondWord.timesRight + secondWord.timesWrong) ) );
+    }
   },
   props: ["builderState", "seenWords"],
 }
@@ -33,7 +56,11 @@ export default {
 <style lang="css" scoped>
 
 h2 {
-  text-align: center;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
 }
 </style>
 
