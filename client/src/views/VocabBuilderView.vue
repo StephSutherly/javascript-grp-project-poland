@@ -48,10 +48,11 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-			let array = this.allWordsExceptKnown();
+      this.seenWords = this.getSeenWords();
+			let array = this.seenWords;
 			console.clear()
-			console.log("readyandknown = ")
-      if (array.length === 0) console.log("readyandknown empty");
+			console.log("seenWords = ")
+      if (array.length === 0) console.log("seenWords empty");
 			for (let i = 0; i < array.length; i++)
 			console.log(array[i].English);
     },
@@ -98,6 +99,10 @@ export default {
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
 		},
+    getSeenWords: function() {
+      return this.allWords.filter(
+        word => word.timesRight > 0 || word.timesWrong > 0);
+    },
 			isNewModule: function() {
       let totalAttempts = this.allWords.reduce((sum, word) => {
         return sum + word.timesRight + word.timesWrong;
@@ -160,6 +165,7 @@ export default {
       buttonWords: [],
 			questionWord: {},
 			feedbackWord: {},
+      seenWords: [],
       builderState: "testing" ///"testing" "won" "lost" "statistics" "pause"
     };
   }
