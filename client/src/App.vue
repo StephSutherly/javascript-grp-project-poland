@@ -2,7 +2,7 @@
 	<div id="app">
 		<!-- <body> -->
 		<div class="container cf">
-			<navigation-bar/>
+			<navigation-bar />
 			<router-view/>
 		<!-- </body> -->
 		</div>
@@ -30,7 +30,6 @@ export default {
 
 #app {
   background: url('https://live.staticflickr.com/7092/7232458062_861b20d86c_b.jpg') no-repeat;
-  /* height: 800px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
