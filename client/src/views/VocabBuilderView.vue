@@ -3,7 +3,8 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-    <builder-pause :builderState="builderState" :seenWords="seenWords"></builder-pause>
+    <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
+    <pause-button></pause-button>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
-import BuilderPause from "@/components/BuilderPause.vue";
+import PauseScreen from "@/components/PauseScreen.vue";
+import PauseButton from "@/components/PauseButton.vue";
 
 export default {
   name: "vocab-builder-view",
@@ -20,7 +22,8 @@ export default {
     "choice-list": ChoiceList,
     "builder-question": BuilderQuestion,
     "builder-feedback": BuilderFeedback,
-    "builder-pause": BuilderPause
+    "pause-screen": PauseScreen,
+    "pause-button": PauseButton
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {

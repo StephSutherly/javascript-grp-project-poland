@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "builder-pause",
+  name: "pause-screen",
   computed:{
 
   },
