@@ -44,7 +44,7 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-			let array = this.allWordsExceptKnown();
+			//let array = this.allWordsExceptKnown();
 			// console.clear()
 			// console.log("readyandknown = ")
       // if (array.length === 0) console.log("     readyandknown empty");
@@ -61,14 +61,34 @@ export default {
 			{
 				console.log("not new module!")
 				let allWordsExceptKnown =  this.allWordsExceptKnown()
+				let allWordsReadyOrKnown = this.allWords.filter(word => {
+					if (this.wordReady(word) || this.wordKnown(word))
+						return true
+					return false
+				})
 				let newTestingArray = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
-				if (newTestingArray.length<3)
+
+				if (this.timeForNewWord())
+				{
+					if (this.noMoreWordsToAdd(allWordsReadyOrKnown))
+					{
+							console.log("no more words to add!")
+							return this.allWords
+					}
+					else
+					{
+							console.log("adding word")
+					}
+				}
+
+				if (this.allKnownWords()>2 && newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with known words if possible
 				{
 					let i=0
+					console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler words`)
 					while (  i< (3-newTestingArray.length)   )
 					{
 						i++
-						addFillerWord(newTestingArray)
+						this.addFillerWord(newTestingArray)
 					}
 				}
 				return newTestingArray
@@ -95,7 +115,7 @@ export default {
     },
     getQuestionWord: function() {
       let previousWord = this.questionWord;
-      let possibleQuestionWords = this.allWords;
+      let possibleQuestionWords = this.testingWords;
       let pos = possibleQuestionWords.indexOf(previousWord);
       possibleQuestionWords.splice(pos, 1);
 
@@ -103,13 +123,14 @@ export default {
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
 		},
-			isNewModule: function() {
-      let totalAttempts = this.allWords.reduce((sum, word) => {
-        return sum + word.timesRight + word.timesWrong;
-      }, 0);
-			if (totalAttempts === 0)
-				return true
-			return false
+
+		isNewModule: function() {
+					let totalAttempts = this.allWords.reduce((sum, word) => {
+						return sum + word.timesRight + word.timesWrong;
+					}, 0);
+					if (totalAttempts === 0)
+						return true
+					return false
     },
     gotRight: function(word) {
 			this.feedbackWord=this.questionWord
@@ -147,12 +168,19 @@ export default {
 		timeForNewWord: function(){
 			return false
 		},
+		noMoreWordsToAdd: function(allWordsReadyOrKnown){
+			let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
+			let highestOrder = Math.max(...orders)
+			if (   highestOrder===(allWords.length-1)   )
+				return true
+			else
+				return false
+		},
 		addFillerWord: function(arrayToAddTo){
 						let possibleFillerWords = this.allKnownWords()
-						console.log("possfilterwords",possibleFillerWords)
+						console.log("possible filter words:",possibleFillerWords)
 						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
-
-						console.log("newword",newWord)
+						//console.log("newword",newWord)
 						arrayToAddTo.push(newWord)
 						let pos = possibleFillerWords.indexOf(newWord)
 						possibleFillerWords.splice(pos,1)
