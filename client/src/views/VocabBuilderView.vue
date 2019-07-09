@@ -83,14 +83,14 @@ export default {
 			if (this.isNewModule())
 			{
 				let firstTwoWords =  this.allWords.filter( (word) => word.studyOrder<3 )
-				console.log("new module, adding 2 words!",firstTwoWords[0],firstTwoWords[1])
+				console.log("new module, adding 2 words!",firstTwoWords[0].English,firstTwoWords[1].English)
 				return firstTwoWords
 			}
 			else
 			{
 				console.log("not new module!")
-				let allTouchedWordsNotKnown =  this.allTouchedWordsNotKnown()
-				console.log("allTouchedWordsNotKnown=",allTouchedWordsNotKnown.map(word => (word.English + " " + word.studyOrder)).join(' '))
+				let allTouchedWordsNotKnownNotReady =  this.allTouchedWordsNotKnownNotReady()
+				console.log("allTouchedWordsNotKnownNotReady=",allTouchedWordsNotKnownNotReady.map(word => (word.English + " " + word.studyOrder)).join(' '))
 
 				let allWordsReadyOrKnown = this.allWords.filter(word => {
 					if (this.wordReady(word) || this.wordKnown(word))
@@ -99,7 +99,7 @@ export default {
 				})
 
 
-				let newTestingArray = allTouchedWordsNotKnown
+				let newTestingArray = allTouchedWordsNotKnownNotReady
 
 				if (this.timeForNewWord(newTestingArray))
 				{
@@ -118,18 +118,21 @@ export default {
 					}
 				}
 
-				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with known words if possible
+				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with unready words if possible
 				{
 					let i=0
-					while (  i< (4-newTestingArray.length)   )
+					while (  i< (3-newTestingArray.length)   )
 					{
+						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler unready words`)
+						this.addFillerUnreadyWordTo(newTestingArray)
 						i++
-						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler words`)
-						this.addFillerWord(newTestingArray)
 					}
 				}
 				else
 					console.log(`newTestingArray length is ${newTestingArray.length}, no fillers required`)
+
+
+
 				return newTestingArray
 			}
     },
@@ -213,11 +216,17 @@ export default {
 			})
 				.then(this.getModule())
 		},
-		allKnownWords: function(){
-			return this.allWords.filter( word =>(this.wordKnown(word)) )
+		allTouchedWordsNotKnownReady: function(){
+			return this.allWords.filter( word =>(!this.wordKnown(word) && this.wordReady(word)  ) )
 		},
-		allTouchedWordsNotKnown: function(){
-			return this.allWords.filter( word =>(!this.wordKnown(word) && !this.wordUntouched(word)   ) )
+		allTouchedWordsNotKnownNotReady: function(){
+			let allWordsExceptKnown=this.allWords.filter(word => (!this.wordKnown(word)))
+			console.log("allWordsExceptKnown=",allWordsExceptKnown.map(word => (word.English + " " + word.studyOrder)).join(' '))
+			let allTouchedWords=this.allWords.filter(word => (!this.wordUntouched(word)))
+			console.log("allTouchedWords=",allTouchedWords.map(word => (word.English + " " + word.studyOrder)).join(' '))
+			let allWordsExceptReady=this.allWords.filter(word => (!this.wordReady(word)))
+			console.log("allWordsExceptReady=",allWordsExceptReady.map(word => (word.English + " " + word.studyOrder)).join(' '))
+			return this.allWords.filter( word =>(!this.wordKnown(word) && !this.wordUntouched(word) && !this.wordReady(word)  ) )
 		},
 		timeForNewWord: function(currentTestingArray){
 			if (currentTestingArray.every(word => (this.wordReady(word))))
@@ -239,8 +248,8 @@ export default {
 			else
 				return false
 		},
-		addFillerWord: function(arrayToAddTo){
-						let possibleFillerWords = this.allKnownWords()
+		addFillerUnreadyWordTo: function(arrayToAddTo){
+						let possibleFillerWords = this.allTouchedWordsNotKnownReady()
 						console.log("possible filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
 						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
@@ -248,7 +257,6 @@ export default {
 						arrayToAddTo.push(newWord)
 						let pos = possibleFillerWords.indexOf(newWord)
 						possibleFillerWords.splice(pos,1)
-						//console.log("this should never be -1",pos)
 						console.log("filler word added to testing Words:", newWord.English)
 		},
 		wordReady: function(word){
