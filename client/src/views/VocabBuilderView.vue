@@ -3,6 +3,7 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
+    <builder-pause :builderState="builderState"></builder-pause>
   </div>
 </template>
 
@@ -11,12 +12,15 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
+import BuilderPause from "@/components/BuilderPause.vue";
+
 export default {
   name: "vocab-builder-view",
   components: {
     "choice-list": ChoiceList,
     "builder-question": BuilderQuestion,
-    "builder-feedback": BuilderFeedback
+    "builder-feedback": BuilderFeedback,
+    "builder-pause": BuilderPause
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -47,8 +51,8 @@ export default {
 			let array = this.allWordsExceptKnown();
 			console.clear()
 			console.log("readyandknown = ")
-      if (array.length === 0) console.log("     readyandknown empty");
-			for (let i = 0; i < array.length; i++) 
+      if (array.length === 0) console.log("readyandknown empty");
+			for (let i = 0; i < array.length; i++)
 			console.log(array[i].English);
     },
     getTestingWords: function() {
@@ -118,9 +122,9 @@ export default {
       let id =  word._id;
       let payload;
       if (wasCorrect == true)
-        payload = {'timesRight': word.timesRight+1};
+        payload = {'timesRight': word.timesRight + 1};
       else {
-        payload = {'timesWrong': word.timesWrong+1 };
+        payload = {'timesWrong': word.timesWrong + 1 };
 			}
 			fetch('http://localhost:3000/api/words/'+id, {
 				method: 'PATCH',
@@ -136,7 +140,7 @@ export default {
 			return false
 		},
 		wordReady: function(word){
-			if (word.timesRight>4)
+			if (word.timesRight > 4)
 				return true
 			return false
 		},
@@ -156,7 +160,7 @@ export default {
       buttonWords: [],
 			questionWord: {},
 			feedbackWord: {},
-      builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
+      builderState: "testing" ///"testing" "won" "lost" "statistics" "pause"
     };
   }
 };
