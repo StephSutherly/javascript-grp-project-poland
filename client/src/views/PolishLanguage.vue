@@ -1,6 +1,7 @@
 <template>
   <div>
-  <p>The official language of the country is Polish, and
+    <h2>LANGUAGE</h2>
+    <p>The official language of the country is Polish, and
     around 38.5 million people in Poland speak it (as well
     as it being spoken as a second language in several
     nearby countries).</p>
@@ -35,7 +36,10 @@ div {
   border: 2px solid black;
   padding: 15px;
   font-family: Arial;
-  font-size: 30px;
+
+}
+p {
+  font-size: 20px;
 }
 
 </style>

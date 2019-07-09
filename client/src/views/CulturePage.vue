@@ -1,5 +1,9 @@
 <template>
-  <div class="view_page">
+
+<div>
+  <div class="div1">
+    <img src="https://image.shutterstock.com/image-photo/panorama-rural-summer-landscape-road-260nw-712944052.jpg" alt="Map of Poland" width="500" height="100">
+    <h2>GENERAL INFORMATION</h2>
     <p>Capital: Warsaw</p>
     <p>Population: 38,628,927 (2016 est.)</p>
     <p>Climate: July is the warmest month (27°C), and December
@@ -16,7 +20,10 @@
     <p>Local time: GMT+01:00</p>
     <p>National Holidays: Constitution Day, 1 May (1791),
     Independence Day, 11 November (1918).</p>
-
+</div>
+<div class="div1">
+    <img src="http://www.maligorzowiacy.pl/files/1600/panorama_1.jpg" alt="Map of Poland" width="500" height="100">
+    <h2>CULTURE</h2>
     <p>With a rich history that can be traced back over hundreds
     of years, Poland has a unique and diverse culture. As a
     country the minority populations are concentrated around
@@ -41,6 +48,7 @@
     funerals are all very much influenced by religion;
     Poland is one of the most devoutly religious countries in Europe.</p>
   </div>
+</div>
 </template>
 
 <script>
@@ -50,13 +58,17 @@ export default {
 </script>
 
 <style lang="css" scoped>
-div {
+.div1 {
   background: white;
-  opacity: 0.8;
-  margin: 70px;
+  opacity: 0.9;
+  margin: 40px;
   border: 2px solid black;
   padding: 15px;
   font-family: Arial;
+  float: left;
+  width: 500px;
+}
+p {
   font-size: 20px;
 }
 
