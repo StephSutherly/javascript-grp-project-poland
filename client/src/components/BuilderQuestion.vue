@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v:if="word">What is the English for <strong>{{ word }}</strong> ?</p>
+    <p v-if="word && displayQuestion">What is the English for <strong>{{ word }}</strong> ?</p>
   </div>
 </template>
 
@@ -15,7 +15,13 @@ export default {
 				return this.feedbackWord.Polish
 			else
 				return ""
-		}
+		},
+    displayQuestion: function(){
+      if (this.builderState !=="pause")
+      return true
+      else
+      return false
+    }
 	},
   props: ["questionWord","feedbackWord","builderState"]
 };
