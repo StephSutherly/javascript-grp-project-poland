@@ -1,23 +1,29 @@
 <template>
-  <button v-if="displayButton" v-on:click="handleClick">Pause</button>
+  <button v-if="displayButton" v-on:click="handleClick">{{ text }}</button>
 </template>
 
 <script>
-import { eventBus } from "@/main.js";
+import { eventBus } from "@/main.js"
 
 export default {
-  name: "pause-button",
+  name: "continue-button",
   computed:{
     displayButton: function(){
       if (this.builderState === "pause" || "start")
-      return false
+        return true
       else
-      return true
+        return false
+    },
+    text: function(){
+      if (this.builderState === "start")
+        return "Start"
+      else (this.builderState === "pause")
+        return "Continue"
     }
   },
   methods: {
     handleClick: function() {
-      eventBus.$emit("pause-button-clicked");
+      eventBus.$emit("continue-button-clicked");
     }
   },
   props: ["builderState"]
