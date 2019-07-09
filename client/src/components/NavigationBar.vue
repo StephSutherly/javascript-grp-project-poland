@@ -80,7 +80,7 @@ export default {
   min-width: 160px;
   top: 50px;
   z-index: 9999;
-  top: 58px;
+  top: 50px;
 }
 .dropdown-content a {
   float: none;

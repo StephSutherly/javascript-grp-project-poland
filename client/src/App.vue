@@ -45,9 +45,7 @@ export default {
 }
 body {
 	clear: both;
-	/* height: 500px; */
 }
-
 #app-footer {
 	display: block;
   background-color: #606060;
