@@ -68,7 +68,7 @@ export default {
 				})
 				let newTestingArray = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
 
-				if (this.timeForNewWord())
+				if (this.timeForNewWord(newTestingArray))
 				{
 					if (this.noMoreWordsToAdd(allWordsReadyOrKnown))
 					{
@@ -165,13 +165,22 @@ export default {
 		allWordsExceptKnown: function(){
 			return this.allWords.filter( word =>(!this.wordKnown(word)) )
 		},
-		timeForNewWord: function(){
-			return false
+		timeForNewWord: function(currentTestingArray){
+			if (currentTestingArray.every(word => (this.wordReady(word))))
+			{
+				console.log("time for new word!")
+				return true
+			}
+			else
+			{
+				console.log("not ready for new word!")
+				return false
+			}
 		},
 		noMoreWordsToAdd: function(allWordsReadyOrKnown){
 			let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
 			let highestOrder = Math.max(...orders)
-			if (   highestOrder===(allWords.length-1)   )
+			if (   highestOrder===(this.allWords.length-1)   )
 				return true
 			else
 				return false
