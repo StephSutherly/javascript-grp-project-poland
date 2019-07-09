@@ -88,8 +88,8 @@ export default {
 			else
 			{
 				console.log("not new module!")
-				let allWordsExceptKnown =  this.allWordsExceptKnown()
-				console.log("allWordsExceptKnown",allWordsExceptKnown)
+				let allTouchedWordsNotKnown =  this.allTouchedWordsNotKnown()
+				console.log("allTouchedWordsNotKnown",allTouchedWordsNotKnown)
 
 				let allWordsReadyOrKnown = this.allWords.filter(word => {
 					if (this.wordReady(word) || this.wordKnown(word))
@@ -98,7 +98,7 @@ export default {
 				})
 
 
-				let newTestingArray = allWordsExceptKnown
+				let newTestingArray = allTouchedWordsNotKnown
 
 				console.log("allwordsNOTknownNOTready - start",newTestingArray)
 
@@ -109,7 +109,7 @@ export default {
 							console.log("no more words to add!")
 							return this.allWords
 					}
-					else
+					else //add new word
 					{
 							let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
 							let highestOrder = Math.max(...orders)
@@ -155,7 +155,7 @@ export default {
 			let previousWord = this.questionWord;
 			console.log(`previous word is ${previousWord.English}`)
 			let possibleQuestionWords = this.testingWords;
-			console.log("question words before previous cut:")
+			console.log("possible q words (from testingwords) before previous cut:")
 			for (let word of possibleQuestionWords)
 			{
 				console.log(word.English,word.studyOrder)
@@ -217,8 +217,8 @@ export default {
 		allKnownWords: function(){
 			return this.allWords.filter( word =>(this.wordKnown(word)) )
 		},
-		allWordsExceptKnown: function(){
-			return this.allWords.filter( word =>(!this.wordKnown(word)) )
+		allTouchedWordsNotKnown: function(){
+			return this.allWords.filter( word =>(!this.wordKnown(word) && !this.wordUntouched(word)   ) )
 		},
 		timeForNewWord: function(currentTestingArray){
 			if (currentTestingArray.every(word => (this.wordReady(word))))
@@ -266,6 +266,11 @@ export default {
         )
           return true;
         else return false;
+		},
+		wordUntouched: function(word){
+			if (word.timesRight===0 && word.timesWrong===0)
+				return true
+			return false
 		}
 	},
   data() {
