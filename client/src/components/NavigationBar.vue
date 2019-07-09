@@ -47,17 +47,15 @@ export default {
   font-size: 20px;
   color: black;
 }
-
 .dropdown {
   float: left;
   overflow: hidden;
 }
-
 .dropdown .dropbtn {
-  height: 52px;
+  height: 50px;
   line-height: 50px;
   font-size: 20px;
-  display: inline-block;
+  display: block;
   border: none;
   outline: none;
   color: black;
@@ -67,19 +65,17 @@ export default {
   margin: 0;
 }
 .dropbtn:hover {
-  cursor: pointer; 
+  cursor: pointer;
 }
-
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: dodgerblue;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #990000;
   min-width: 160px;
-  top: 58px;
+  /* top: 58px; */
 }
 .dropdown-content a {
   float: none;
@@ -90,16 +86,18 @@ export default {
 }
 .dropbtn,
 .dropdown-content {
-  width: 200px;
+  min-width: 200px;
   text-align: left;
 }
-
 .dropdown-content a:hover {
   background-color: #cc0000;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
+.navbar > div,
+.navbar > div .dropdown {
+  height: 50px;
+  overflow: hidden;
+}
 </style>
