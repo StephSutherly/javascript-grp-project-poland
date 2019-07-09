@@ -1,5 +1,7 @@
 <template>
-  <button v-if="displayButton" v-on:click="handleClick">{{ text }}</button>
+  <div class="wrapper">
+    <button v-if="displayButton" v-on:click="handleClick">{{ text }}</button>
+  </div>
 </template>
 
 <script>
@@ -9,7 +11,7 @@ export default {
   name: "continue-button",
   computed:{
     displayButton: function(){
-      if (this.builderState === "pause" || "start")
+      if (this.builderState === "pause" || this.builderState === "start")
         return true
       else
         return false
@@ -39,10 +41,17 @@ button {
   height: 40px;
   font-size: 20px;
   display: inline-block;
-  background-color: #80bfff;
+  background-color: yellow;
   border-radius: 5px;
-  border: 2px solid #a5d8f3;
+  border: 2px solid green;
   margin: 2px;
+  align: center;
+  position: absolute;
+  top: 40%;
+}
+
+.wrapper {
+    text-align: center;
 }
 
 </style>
