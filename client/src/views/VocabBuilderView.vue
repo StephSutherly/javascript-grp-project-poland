@@ -41,15 +41,16 @@ export default {
         });
     },
     updateWordLists: function() {
-      this.testingWords = this.getTestingWords();
-      this.questionWord = this.getQuestionWord();
+			
+			this.testingWords = this.getTestingWords();
+			if (this.hasBeenRun==false)
+			{
+				this.questionWord=this.testingWords[Math.floor(Math.random() * this.testingWords.length)];
+			}
+			else
+      	this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-			//let array = this.allWordsExceptKnown();
-			// console.clear()
-			// console.log("readyandknown = ")
-      // if (array.length === 0) console.log("     readyandknown empty");
-			// for (let i = 0; i < array.length; i++) 
-			// console.log(array[i].English);
+			this.hasBeenRun=true
     },
     getTestingWords: function() {
 			if (this.isNewModule())
@@ -61,12 +62,18 @@ export default {
 			{
 				console.log("not new module!")
 				let allWordsExceptKnown =  this.allWordsExceptKnown()
+				console.log("allWordsExceptKnown",allWordsExceptKnown)
+
 				let allWordsReadyOrKnown = this.allWords.filter(word => {
 					if (this.wordReady(word) || this.wordKnown(word))
 						return true
 					return false
 				})
-				let newTestingArray = allWordsExceptKnown.filter( word => (this.wordReady(word))  )
+
+
+				let newTestingArray = allWordsExceptKnown
+
+				console.log("allwordsNOTknownNOTready - start",newTestingArray)
 
 				if (this.timeForNewWord(newTestingArray))
 				{
@@ -77,7 +84,11 @@ export default {
 					}
 					else
 					{
-							console.log("adding word")
+							let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
+							let highestOrder = Math.max(...orders)
+							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1)) 
+							newTestingArray.push(newWord)
+							console.log(`adding new word ${newWord.English}`)
 					}
 				}
 
@@ -114,16 +125,22 @@ export default {
       return tempButtonWords;
     },
     getQuestionWord: function() {
-      let previousWord = this.questionWord;
+			let previousWord = this.questionWord;
+			console.log(`previous word is ${previousWord.English}`)
       let possibleQuestionWords = this.testingWords;
       let pos = possibleQuestionWords.indexOf(previousWord);
       possibleQuestionWords.splice(pos, 1);
 
+			let array = possibleQuestionWords;
+			//console.clear()
+			console.log("possibleQuestionWords = ",possibleQuestionWords)
+      // if (array.length === 0) console.log("possibleQuestionWords empty");
+			// for (let i = 0; i < array.length; i++) 
+			// console.log(array[i].English);
       return possibleQuestionWords[
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
 		},
-
 		isNewModule: function() {
 					let totalAttempts = this.allWords.reduce((sum, word) => {
 						return sum + word.timesRight + word.timesWrong;
@@ -216,6 +233,7 @@ export default {
       buttonWords: [],
 			questionWord: {},
 			feedbackWord: {},
+			hasBeenRun: false,
       builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
     };
   }
