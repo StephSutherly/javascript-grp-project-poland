@@ -64,6 +64,7 @@ export default {
 			if (this.hasBeenRun==false)
 			{
 				this.questionWord=this.testingWords[Math.floor(Math.random() * this.testingWords.length)];
+				console.log(`new session first word set to ${this.questionWord.English}`)
 			}
 			else
       	this.questionWord = this.getQuestionWord();
@@ -81,7 +82,7 @@ export default {
 			if (this.isNewModule())
 			{
 				let firstTwoWords =  this.allWords.filter( (word) => word.studyOrder<3 )
-				console.log("new module, adding 2 words!",firstTwoWords)
+				console.log("new module, adding 2 words!",firstTwoWords[0],firstTwoWords[1])
 				return firstTwoWords
 			}
 			else
@@ -153,19 +154,26 @@ export default {
     getQuestionWord: function() {
 			let previousWord = this.questionWord;
 			console.log(`previous word is ${previousWord.English}`)
-      let possibleQuestionWords = this.testingWords;
-      let pos = possibleQuestionWords.indexOf(previousWord);
+			let possibleQuestionWords = this.testingWords;
+			console.log("question words before previous cut:")
+			for (let word of possibleQuestionWords)
+			{
+				console.log(word.English,word.studyOrder)
+			}
+			let pos = possibleQuestionWords.findIndex(word => (word.English==previousWord.English));
+			console.log("position of previousword to cut:",pos)
       possibleQuestionWords.splice(pos, 1);
 
-			let array = possibleQuestionWords;
 			//console.clear()
-			console.log("possibleQuestionWords = ",possibleQuestionWords)
-      // if (array.length === 0) console.log("possibleQuestionWords empty");
-			// for (let i = 0; i < array.length; i++) 
-			// console.log(array[i].English);
-      return possibleQuestionWords[
-        Math.floor(Math.random() * possibleQuestionWords.length)
-      ];
+			console.log("possibleQuestionWords =")
+			if (possibleQuestionWords.length === 0) console.log("possibleQuestionWords empty");
+			else
+			{
+				for (let word of possibleQuestionWords) 
+					console.log(word.English,word.studyOrder);
+			}
+
+      return possibleQuestionWords[Math.floor(Math.random() * possibleQuestionWords.length)];
 		},
     getSeenWords: function() {
       return this.allWords.filter(
@@ -234,7 +242,11 @@ export default {
 		},
 		addFillerWord: function(arrayToAddTo){
 						let possibleFillerWords = this.allKnownWords()
-						console.log("possible filter words:",possibleFillerWords)
+						console.log("possible filter words:")
+						for(let word of possibleFillerWords)
+						{
+							console.log(word.English,word.studyOrder)
+						}
 						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
 						//console.log("newword",newWord)
 						arrayToAddTo.push(newWord)
