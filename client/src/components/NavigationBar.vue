@@ -31,11 +31,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
 .navbar {
   overflow: hidden;
   background-color: #80bfff;
   height: 50px;
   line-height: 50px;
+
 }
 .navbar a {
   float: left;
@@ -75,7 +78,9 @@ export default {
   position: absolute;
   background-color: #990000;
   min-width: 160px;
-  /* top: 58px; */
+  top: 50px;
+  z-index: 9999;
+  top: 58px;
 }
 .dropdown-content a {
   float: none;
@@ -99,5 +104,4 @@ export default {
 .navbar > div .dropdown {
   height: 50px;
   overflow: hidden;
-}
-</style>
+}</style>

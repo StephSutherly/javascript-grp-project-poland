@@ -28,4 +28,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+div {
+  background: white;
+  opacity: 0.8;
+  margin: 70px;
+  border: 2px solid black;
+  padding: 15px;
+  font-family: Arial;
+  font-size: 30px;
+}
+
 </style>
