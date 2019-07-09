@@ -8,8 +8,8 @@ export default {
   props: ["builderState"],
   computed: {
     text: function() {
-      if (this.builderState === "won") return "correct!";
-      else if (this.builderState === "lost") return "incorrect  :( ";
+      if (this.builderState === "won") return "Yey, that is correct!";
+      else if (this.builderState === "lost") return "Sorry, that's not correct";
       else return "";
     }
   }
@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 * {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v:if="word">What is <strong>{{ word }}</strong> ?</p>
+    <p v:if="word">What is the English for <strong>{{ word }}</strong> ?</p>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 <style scoped>
 
 p {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
 }
 

@@ -3,6 +3,7 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
+    <builder-pause :builderState="builderState" :seenWords="seenWords"></builder-pause>
   </div>
 </template>
 
@@ -11,12 +12,15 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
+import BuilderPause from "@/components/BuilderPause.vue";
+
 export default {
   name: "vocab-builder-view",
   components: {
     "choice-list": ChoiceList,
     "builder-question": BuilderQuestion,
-    "builder-feedback": BuilderFeedback
+    "builder-feedback": BuilderFeedback,
+    "builder-pause": BuilderPause
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -51,6 +55,13 @@ export default {
       	this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
+      this.seenWords = this.getSeenWords();
+			let array = this.seenWords;
+			console.clear()
+			console.log("seenWords = ")
+      if (array.length === 0) console.log("seenWords empty");
+			for (let i = 0; i < array.length; i++)
+			console.log(array[i].English);
     },
     getTestingWords: function() {
 			if (this.isNewModule())
@@ -141,13 +152,17 @@ export default {
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
 		},
-		isNewModule: function() {
-					let totalAttempts = this.allWords.reduce((sum, word) => {
-						return sum + word.timesRight + word.timesWrong;
-					}, 0);
-					if (totalAttempts === 0)
-						return true
-					return false
+    getSeenWords: function() {
+      return this.allWords.filter(
+        word => word.timesRight > 0 || word.timesWrong > 0);
+    },
+			isNewModule: function() {
+      let totalAttempts = this.allWords.reduce((sum, word) => {
+        return sum + word.timesRight + word.timesWrong;
+      }, 0);
+			if (totalAttempts === 0)
+				return true
+			return false
     },
     gotRight: function(word) {
 			this.feedbackWord=this.questionWord
@@ -165,9 +180,9 @@ export default {
       let id =  word._id;
       let payload;
       if (wasCorrect == true)
-        payload = {'timesRight': word.timesRight+1};
+        payload = {'timesRight': word.timesRight + 1};
       else {
-        payload = {'timesWrong': word.timesWrong+1 };
+        payload = {'timesWrong': word.timesWrong + 1 };
 			}
 			fetch('http://localhost:3000/api/words/'+id, {
 				method: 'PATCH',
@@ -213,7 +228,7 @@ export default {
 						console.log("filler word added to testing Words:", newWord.English)
 		},
 		wordReady: function(word){
-			if (word.timesRight>4)
+			if (word.timesRight > 4)
 				return true
 			return false
 		},
@@ -234,7 +249,8 @@ export default {
 			questionWord: {},
 			feedbackWord: {},
 			hasBeenRun: false,
-      builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
+      builderState: "testing", ///"testing" "won" "lost "statistics" "pause"
+      seenWords: []
     };
   }
 };
@@ -243,7 +259,8 @@ export default {
 <style lang="css" scoped>
 
 .vocab-builder-view {
-  background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat;
+  /* background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat; */
+  background: linear-gradient(to bottom, rgba(255,255,255,.95) 50%, rgba(220,20,60,.95) 50%);
   display: block;
   height: 240px;
   background-position: center;
@@ -252,6 +269,7 @@ export default {
   margin: 20px;
   padding: 10px;
   border-radius: 4px;
+  font-family: 'Questrial', sans-serif;
 }
 
 </style>
