@@ -33,7 +33,7 @@ export default {
 		});
 
 		this.getModule();
-
+	console.log(this.emojis[0])
   },
   methods: {
     getModule: function() {
@@ -56,18 +56,19 @@ export default {
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
-			let array = this.seenWords;
-			console.clear()
-			console.log("seenWords = ")
-      if (array.length === 0) console.log("seenWords empty");
-			for (let i = 0; i < array.length; i++)
-			console.log(array[i].English);
+			// let array = this.seenWords;
+			// console.clear()
+			// console.log("seenWords = ")
+      // if (array.length === 0) console.log("seenWords empty");
+			// for (let i = 0; i < array.length; i++)
+			// console.log(array[i].English);
     },
     getTestingWords: function() {
 			if (this.isNewModule())
 			{
-				console.log("new module, adding 2 words!")
-				return this.allWords.filter( (word) => word.studyOrder<3 )
+				let firstTwoWords =  this.allWords.filter( (word) => word.studyOrder<3 )
+				console.log("new module, adding 2 words!",firstTwoWords)
+				return firstTwoWords
 			}
 			else
 			{
@@ -250,7 +251,8 @@ export default {
 			feedbackWord: {},
 			hasBeenRun: false,
       builderState: "testing", ///"testing" "won" "lost "statistics" "pause"
-      seenWords: []
+			seenWords: [],
+			emojis: ['\u{1F4A9}']
     };
   }
 };
