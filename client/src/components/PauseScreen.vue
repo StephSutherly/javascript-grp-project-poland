@@ -1,7 +1,11 @@
 <template lang="html">
-  <div id="pause-screen">
-    <h2 v-if="displayPause">You've Paused!</h2>
-    <h2 v-if="displayStart">Vocabulary Builder</h2>
+  <div>
+      <div v-if="displayPause" id="pause-screen">
+        <h2>You've Paused!</h2>
+      </div>
+      <div v-if="displayStart" id="start-screen">
+        <h2>Vocabulary Builder</h2>
+      </div>
   </div>
 </template>
 
