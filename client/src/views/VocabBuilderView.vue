@@ -189,7 +189,10 @@ export default {
 			}
 			let pos = possibleQuestionWords.findIndex(word => (word.English==previousWord.English));
 			console.log("position of previousword to cut:",pos)
-      possibleQuestionWords.splice(pos, 1);
+			if (pos!=-1)
+				possibleQuestionWords.splice(pos, 1);
+			else
+				console.log("previous word not in possible question words")
 
 			//console.clear()
 			console.log("possibleQuestionWords =")
