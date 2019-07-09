@@ -40,7 +40,11 @@ export default {
     eventBus.$on("pause-button-clicked", () => {
       console.log("pause button clicked!");
       this.builderState = "pause";
-    })
+    });
+    eventBus.$on("continue-button-clicked", () => {
+      console.log("continue button clicked!");
+      this.builderState = "testing";
+    });
 
 		this.getModule();
 
