@@ -180,10 +180,8 @@ export default {
         word => word.timesRight > 0 || word.timesWrong > 0);
     },
 			isNewModule: function() {
-      let totalAttempts = this.allWords.reduce((sum, word) => {
-        return sum + word.timesRight + word.timesWrong;
-      }, 0);
-			if (totalAttempts === 0)
+			let numberOfTouchedWords = this.allWords.filter(word => (!this.wordUntouched(word)) ).length
+			if (numberOfTouchedWords<2)
 				return true
 			return false
     },
