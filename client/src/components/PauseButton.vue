@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="handleClick">Pause</button>
+  <button v-if="displayButton" v-on:click="handleClick">Pause</button>
 </template>
 
 <script>
@@ -7,11 +7,20 @@ import { eventBus } from "@/main.js";
 
 export default {
   name: "pause-button",
+  computed:{
+    displayButton: function(){
+      if (this.builderState !=="pause")
+      return true
+      else
+      return false
+    }
+  },
   methods: {
     handleClick: function() {
       eventBus.$emit("pause-button-clicked");
     }
-  }
+  },
+  props: ["builderState"]
 };
 </script>
 

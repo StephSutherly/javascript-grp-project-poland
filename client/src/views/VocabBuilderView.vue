@@ -4,7 +4,7 @@
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
     <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
-    <pause-button></pause-button>
+    <pause-button :builderState="builderState"></pause-button>
   </div>
 </template>
 
@@ -34,6 +34,10 @@ export default {
       console.log("next button clicked");
       this.builderState = "testing";
 		});
+    eventBus.$on("pause-button-clicked", () => {
+      console.log("pause button clicked!");
+      this.builderState = "pause";
+    })
 
 		this.getModule();
 
