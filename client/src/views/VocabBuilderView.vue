@@ -3,6 +3,7 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
+    <builder-pause :builderState="builderState" :seenWords="seenWords"></builder-pause>
   </div>
 </template>
 
@@ -11,12 +12,15 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
+import BuilderPause from "@/components/BuilderPause.vue";
+
 export default {
   name: "vocab-builder-view",
   components: {
     "choice-list": ChoiceList,
     "builder-question": BuilderQuestion,
-    "builder-feedback": BuilderFeedback
+    "builder-feedback": BuilderFeedback,
+    "builder-pause": BuilderPause
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -44,11 +48,12 @@ export default {
       this.testingWords = this.getTestingWords();
       this.questionWord = this.getQuestionWord();
       this.buttonWords = this.getButtonWords();
-			let array = this.allWordsExceptKnown();
+      this.seenWords = this.getSeenWords();
+			let array = this.seenWords;
 			console.clear()
-			console.log("readyandknown = ")
-      if (array.length === 0) console.log("     readyandknown empty");
-			for (let i = 0; i < array.length; i++) 
+			console.log("seenWords = ")
+      if (array.length === 0) console.log("seenWords empty");
+			for (let i = 0; i < array.length; i++)
 			console.log(array[i].English);
     },
     getTestingWords: function() {
@@ -94,6 +99,10 @@ export default {
         Math.floor(Math.random() * possibleQuestionWords.length)
       ];
 		},
+    getSeenWords: function() {
+      return this.allWords.filter(
+        word => word.timesRight > 0 || word.timesWrong > 0);
+    },
 			isNewModule: function() {
       let totalAttempts = this.allWords.reduce((sum, word) => {
         return sum + word.timesRight + word.timesWrong;
@@ -118,9 +127,9 @@ export default {
       let id =  word._id;
       let payload;
       if (wasCorrect == true)
-        payload = {'timesRight': word.timesRight+1};
+        payload = {'timesRight': word.timesRight + 1};
       else {
-        payload = {'timesWrong': word.timesWrong+1 };
+        payload = {'timesWrong': word.timesWrong + 1 };
 			}
 			fetch('http://localhost:3000/api/words/'+id, {
 				method: 'PATCH',
@@ -136,7 +145,7 @@ export default {
 			return false
 		},
 		wordReady: function(word){
-			if (word.timesRight>4)
+			if (word.timesRight > 4)
 				return true
 			return false
 		},
@@ -156,7 +165,8 @@ export default {
       buttonWords: [],
 			questionWord: {},
 			feedbackWord: {},
-      builderState: "testing" ///"testing" "won" "lost "statistics" "pause"
+      seenWords: [],
+      builderState: "testing" ///"testing" "won" "lost" "statistics" "pause"
     };
   }
 };
