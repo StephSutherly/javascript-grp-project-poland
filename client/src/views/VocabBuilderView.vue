@@ -3,7 +3,9 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-    <builder-pause :builderState="builderState" :seenWords="seenWords"></builder-pause>
+    <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
+    <continue-button :builderState="builderState"></continue-button>
+    <pause-button :builderState="builderState"></pause-button>
   </div>
 </template>
 
@@ -12,7 +14,9 @@ import { eventBus } from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
-import BuilderPause from "@/components/BuilderPause.vue";
+import PauseScreen from "@/components/PauseScreen.vue";
+import PauseButton from "@/components/PauseButton.vue";
+import ContinueButton from "@/components/ContinueButton.vue";
 
 export default {
   name: "vocab-builder-view",
@@ -20,7 +24,9 @@ export default {
     "choice-list": ChoiceList,
     "builder-question": BuilderQuestion,
     "builder-feedback": BuilderFeedback,
-    "builder-pause": BuilderPause
+    "pause-screen": PauseScreen,
+    "pause-button": PauseButton,
+    "continue-button": ContinueButton
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -31,6 +37,14 @@ export default {
       console.log("next button clicked");
       this.builderState = "testing";
 		});
+    eventBus.$on("pause-button-clicked", () => {
+      console.log("pause button clicked!");
+      this.builderState = "pause";
+    });
+    eventBus.$on("continue-button-clicked", () => {
+      console.log("continue button clicked!");
+      this.builderState = "testing";
+    });
 
 		this.getModule();
 	console.log(this.emojis[0])
@@ -250,9 +264,9 @@ export default {
 			questionWord: {},
 			feedbackWord: {},
 			hasBeenRun: false,
-      builderState: "testing", ///"testing" "won" "lost "statistics" "pause"
 			seenWords: [],
-			emojis: ['\u{1F4A9}']
+			emojis: ['\u{1F4A9}'],
+      builderState: "start" ///"testing" "won" "lost" "pause"
     };
   }
 };
