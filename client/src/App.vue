@@ -34,6 +34,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 	background-attachment: fixed;
+	opacity: 0.9;
 }
 #app > .container {
 	min-height: 750px;
@@ -46,7 +47,7 @@ export default {
 	min-height: 700px;
 	height: 100%;
 	background: white;
-	opacity: 0.9;
+	/* opacity: 0.9; */
 	padding: 15px;
 	font-family: Arial;
 }

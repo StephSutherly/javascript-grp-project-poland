@@ -2,9 +2,9 @@
   <div>
       <div v-if="displayPause" id="pause-screen">
         <h2>Review</h2>
-        <h3 v-if="totalRight + totalWrong > 0">You got {{this.percentageRight}}% Correct</h3>
+        <h3 v-if="totalRight + totalWrong > 0">You got {{this.percentageRight}}% Correct &#128076;</h3>
         <h3 v-else>No words to review - Keep going, you've got this! &#128522;</h3>
-        <h5 class="word-list-title">Word List</h5>
+        <h2>Words Studied</h2>
         <!-- <ul>
 
         </ul> -->
@@ -72,15 +72,27 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 #pause-screen {
-  height: 500px;
-}
-h2 {
-  text-align: left;
+  height: flex;
+  border-radius: 5px;
+  background-color: #cce6ff;
+  padding: 10px;
+  margin-top: 5px;
 }
 
-h5.word-list-title {
-  padding-top: 20px;
+h2 {
+    text-align: left;
+    /* font-size: 30px;
+    padding: 5px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #80bfff;
+    width: 240px; */
+}
+
+h3 {
+  margin: 20px;
 }
 
 ul {
@@ -92,8 +104,20 @@ ul {
 }
 
 table {
-  width: 70%;
+  width: 90%;
   background-color: white;
+  border-spacing: 0;
+  table-layout: fixed;
+  margin: 20px;
+}
+
+td {
+  width: 25%;
+}
+
+th {
+  text-align: left;
+  border-bottom: 1px solid #606060;
 }
 </style>
 
