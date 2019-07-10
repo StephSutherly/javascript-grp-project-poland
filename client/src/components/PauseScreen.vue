@@ -100,16 +100,19 @@ table {
   width: 90%;
   background-color: white;
   border-spacing: 0;
+  opacity: 0.8;
   table-layout: fixed;
   margin: 20px;
 }
 
 td {
   width: 25%;
+  font-size: 20px;
 }
 
 th {
   text-align: left;
+  font-size: 22px;
   border-bottom: 1px solid #606060;
 }
 </style>
