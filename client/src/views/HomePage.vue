@@ -4,12 +4,11 @@
     <div class="intro">
     <h3>WITAMY - WELCOME</h3>
     <p>
-      We cordially welcome you to the best website about Polishness.
-      You will find here, all the necessary information about Poland
-      thanks to which you will enrich your knowledge about this
-      wonderful region of Europe as well as the culture and the
-      customs that prevail in this country.</p>
-    </div><!-- .intro -->
+      Welcome to the best website about Polishness. Here you can find
+      lots of useful information about Poland that will enrich your
+      knowledge about this wonderful region of Europe, its culture and
+      the customs that prevail in this country.</p>
+    </div>
 
     <div id="page-tabs" class="cf">
 
