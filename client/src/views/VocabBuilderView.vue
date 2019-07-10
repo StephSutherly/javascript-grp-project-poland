@@ -386,7 +386,7 @@ export default {
   margin: 20px;
   padding: 10px;
   border-radius: 4px;
-  font-family: 'Questrial', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   position: relative;
 }
 
