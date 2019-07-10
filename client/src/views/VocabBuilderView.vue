@@ -46,11 +46,10 @@ export default {
     });
     eventBus.$on("continue-button-clicked", () => {
       console.log("continue button clicked!");
+      if (this.builderState === "start")
+        this.getModule();
       this.builderState = "testing";
     });
-
-		this.getModule();
-	console.log(this.emojis[0])
   },
   methods: {
     getModule: function() {
@@ -255,13 +254,13 @@ export default {
 				.then(this.getModule())
 		},
 		wordReady: function(word){
-			if (word.timesRight > 4)
+			if (word.timesRight > 2)
 				return true
 			return false
 		},
 		wordKnown: function(word) {
         if (
-          (word.timesRight > 5 && word.timesRight > word.timesWrong) ||
+          (word.timesRight > 4 && word.timesRight > word.timesWrong) ||
           word.isKnown
         )
           return true;
@@ -353,7 +352,6 @@ export default {
 			hasBeenRun: false,
 			seenWords: [],
       newWord: {},
-			emojis: ['\u{1F4A9}'],
       builderState: "start" ///"testing" "won" "lost" "pause" "start" "newWord"
     };
   }

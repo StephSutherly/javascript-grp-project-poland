@@ -2,8 +2,7 @@
   <div>
     <div v-if="displayNewWord">
       <h2>You're ready for a new word!</h2>
-      <h2>{{ questionWord.English }}</h2>
-      <h2>{{ questionWord.Polish }}</h2>
+        <h3>{{ questionWord.English }}: {{ questionWord.Polish }}</h3>
     </div>
   </div>
 </template>
@@ -24,4 +23,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+h3 {
+  float: left;
+  font-size: 40px;
+  padding: 5px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #80bfff;
+}
+
+
 </style>

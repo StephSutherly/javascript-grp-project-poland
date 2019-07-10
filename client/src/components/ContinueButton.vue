@@ -18,11 +18,11 @@ export default {
     },
     text: function(){
       if (this.builderState === "start")
-        return "Start"
+        return "Start \u{25B6}"
       else if (this.builderState === "newWord")
-        return "Got it!"
+        return "Got it! \u{2705}"
       else (this.builderState === "pause")
-        return "Continue"
+        return "Continue \u{27A1}"
     }
   },
   methods: {
