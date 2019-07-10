@@ -47,7 +47,7 @@ button {
   border-radius: 5px;
   border: 2px solid green;
   margin: 2px;
-  float: right; 
+  /* float: right;  */
   /* align: center;
   position: absolute;
   top: 40%; */
@@ -55,6 +55,9 @@ button {
 
 .wrapper {
     text-align: center;
+    position: absolute;
+    top: 20px;
+    right: 15px;
 }
 
 </style>

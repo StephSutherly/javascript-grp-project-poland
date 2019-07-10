@@ -385,6 +385,7 @@ export default {
   padding: 10px;
   border-radius: 4px;
   font-family: 'Questrial', sans-serif;
+  position: relative;
 }
 
 </style>
