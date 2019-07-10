@@ -18,24 +18,29 @@ export default {
 </script>
 
 <style scoped>
-
+.wrapper {
+    text-align: center;
+    position: relative;
+    display: block;
+    width: 100%;
+    float: right;
+    bottom: 0;
+}
 button {
   color: black;
   font-family: 'Quicksand', sans-serif;
   height: 40px;
+  width: 120px;
   font-size: 20px;
-  display: inline-block;
+  display: block;
   background-color: yellow;
   border-radius: 5px;
   border: 2px solid green;
-  margin: 2px;
+  float: right;
   align: center;
+  float: right;
   position: absolute;
   top: 40%;
-}
-
-.wrapper {
-    text-align: center;
 }
 
 </style>

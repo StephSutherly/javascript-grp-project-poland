@@ -45,9 +45,10 @@ button {
   border-radius: 5px;
   border: 2px solid green;
   margin: 2px;
-  align: center;
+  float: right; 
+  /* align: center;
   position: absolute;
-  top: 40%;
+  top: 40%; */
 }
 
 .wrapper {

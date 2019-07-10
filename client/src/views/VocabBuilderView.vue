@@ -1,5 +1,5 @@
 <template>
-  <div class="vocab-builder-view">
+  <div class="vocab-builder-view cf">
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
@@ -68,7 +68,10 @@ export default {
 				console.log(`new session first word set to ${this.questionWord.English}`)
 			}
 			else
-      	this.questionWord = this.getQuestionWord();
+				this.questionWord = this.getQuestionWord();
+				
+			
+
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
@@ -112,13 +115,13 @@ export default {
 					{
 							let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
 							let highestOrder = Math.max(...orders)
-							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1)) 
+							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1))
 							newTestingArray.push(newWord)
 							console.log(`adding new word ${newWord.English}`)
 					}
 				}
 
-				
+
 				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
 					console.group("ready fillers needed")
@@ -182,7 +185,10 @@ export default {
         let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
         arrayWithoutQWord.splice(pos, 1);
       }
-      tempButtonWords.push(this.questionWord);
+			tempButtonWords.push(this.questionWord);
+			tempButtonWords=this.shuffle(tempButtonWords);
+
+			
       return tempButtonWords;
     },
     getQuestionWord: function() {
@@ -206,7 +212,7 @@ export default {
 			if (possibleQuestionWords.length === 0) console.log("possibleQuestionWords empty");
 			else
 			{
-				for (let word of possibleQuestionWords) 
+				for (let word of possibleQuestionWords)
 					console.log(word.English,word.studyOrder);
 			}
 
@@ -250,7 +256,7 @@ export default {
 				.then(this.getModule())
 		},
 		wordReady: function(word){
-			if (word.timesRight > 4)
+			if (word.timesRight > 3)
 				return true
 			return false
 		},
@@ -336,6 +342,16 @@ export default {
 						console.log("filler word added to testing Words:", newWord.English)
 						return true
 		},
+		shuffle:function(a){     ///taken from wikipedia
+    var j, x, i;
+			for (i = a.length - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					x = a[i];
+					a[i] = a[j];
+					a[j] = x;
+			}
+    	return a;
+		}
 	},
   data() {
     return {
@@ -357,9 +373,10 @@ export default {
 
 .vocab-builder-view {
   /* background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat; */
-  background: linear-gradient(to bottom, rgba(255,255,255,.95) 50%, rgba(220,20,60,.95) 50%);
+  background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
-  height: 240px;
+  /* min-height: 240px; */
+  height: 500px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
