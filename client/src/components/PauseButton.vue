@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <button v-if="displayButton" v-on:click="handleClick">Pause</button>
+    <button v-if="displayButton" v-on:click="handleClick">Pause &#9995;</button>
   </div>
 </template>
 
