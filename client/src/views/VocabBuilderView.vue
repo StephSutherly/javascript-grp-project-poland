@@ -39,6 +39,10 @@ export default {
     });
     eventBus.$on("next-button-clicked", () => {
       console.log("next button clicked");
+      if (this.builderState === "won")
+        this.updateWord(this.questionWord, true);
+      else if (this.builderState === "lost")
+        this.updateWord(this.questionWord, false);
       this.builderState = "testing";
 		});
     eventBus.$on("pause-button-clicked", () => {
@@ -232,14 +236,12 @@ export default {
 			return false
     },
     gotRight: function(word) {
-			this.feedbackWord=this.questionWord
-      this.updateWord(word, true);
+			this.feedbackWord=this.questionWord;
       this.builderState = "won";
       // CSS Green class
     },
     gotWrong: function(word) {
-			this.feedbackWord=this.questionWord
-      this.updateWord(word, false);
+			this.feedbackWord=this.questionWord;
       this.builderState = "lost";
       // CSS Red Class
     },
@@ -381,14 +383,15 @@ export default {
   background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
   /* min-height: 240px; */
-  height: 500px;
+  height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 20px;
   padding: 10px;
   border-radius: 4px;
-  font-family: 'Questrial', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
 }
 
 </style>
