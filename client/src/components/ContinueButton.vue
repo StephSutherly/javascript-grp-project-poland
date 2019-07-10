@@ -11,7 +11,7 @@ export default {
   name: "continue-button",
   computed:{
     displayButton: function(){
-      if (this.builderState === "pause" || this.builderState === "start")
+      if (this.builderState === "pause" || this.builderState === "start" || this.builderState === "newWord")
         return true
       else
         return false
@@ -19,6 +19,8 @@ export default {
     text: function(){
       if (this.builderState === "start")
         return "Start"
+      else if (this.builderState === "newWord")
+        return "Got it!"
       else (this.builderState === "pause")
         return "Continue"
     }
