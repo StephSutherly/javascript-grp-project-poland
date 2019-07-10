@@ -107,8 +107,6 @@ export default {
 						return true
 					return false
 				})
-
-
 				let newTestingArray = allTouchedWordsNotKnownNotReady
 
 				if (this.timeForNewWord(newTestingArray))
