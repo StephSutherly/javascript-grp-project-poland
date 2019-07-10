@@ -253,7 +253,8 @@ export default {
       else {
         payload = {'timesWrong': word.timesWrong + 1 };
 			}
-			fetch('http://localhost:3000/api/words/'+id, {
+			console.log(`patching to http://localhost:3000/api/${this.currentModule.path+id}/`)
+			fetch(`http://localhost:3000/api/${this.currentModule.path}/`+id, {
 				method: 'PATCH',
 				body: JSON.stringify(payload),
 				headers: {'Content-Type':	'application/json'}
