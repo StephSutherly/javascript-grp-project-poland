@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     getModule: function() {
-      fetch("http://localhost:3000/api/words/")
+      fetch(`http://localhost:3000/api/${currentModule.path}/`)
         .then(res => res.json())
         .then(data => {
           this.allWords = data;
@@ -365,7 +365,8 @@ export default {
 			seenWords: [],
       newWord: {},
 			builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
-			modules: ['basic','food']
+			currentModule: modules[0]
+			modules: [{label: "Basic Vocabulary and Greetings", path: 'basicwords'},{label: "Food and Drink", path: 'foodwords'}]
     };
   }
 };

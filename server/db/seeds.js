@@ -1,7 +1,7 @@
 use polish_words;
 db.dropDatabase();
 
-db.words.insertMany([
+db.basicwords.insertMany([
 {
   Polish: "Cześć \u{1F44B}",
   English: "Hi",
