@@ -1,7 +1,7 @@
 use polish_words;
 db.dropDatabase();
 
-db.words.insertMany([
+db.basicwords.insertMany([
 {
   Polish: "Cześć \u{1F44B}",
   English: "Hi",
@@ -124,3 +124,80 @@ db.words.insertMany([
   wordKnown: true
 }
 ]);
+
+db.foodwords.insertMany([
+	{
+		Polish: "Jabłko \u{1F34E}",
+		English: "Apple",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 1,
+		wordKnown: false
+	},
+	{
+		Polish: "banan \u{1F34C}",
+		English: "Banana",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 2,
+		wordKnown: true
+	},
+	{
+		Polish: "Truskawka \u{1F353}",
+		English: "Strawberry",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 3,
+		wordKnown: false
+	},
+	{
+		Polish: "Berger \u{1F354}",
+		English: "Burger",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 4,
+		wordKnown: false
+	
+	},
+	{
+		Polish: "pizza \u{1F355}",
+		English: "Pizza",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 5,
+		wordKnown: true
+	},
+	{
+		Polish: "ciastko \u{1F382}",
+		English: "Cake",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 6,
+		wordKnown: false
+	},
+	{
+		Polish: "arbuz \u{1F349}",
+		English: "Watermelon",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 7,
+		wordKnown: false
+	},
+	{
+		Polish: "piwo \u{1F37A}",
+		English: "Beer",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 8,
+		wordKnown: true
+	},
+	{
+		Polish: "wino \u{1F377}",
+		English: "Wine",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 9,
+		wordKnown: false
+	}
+	]);
+	

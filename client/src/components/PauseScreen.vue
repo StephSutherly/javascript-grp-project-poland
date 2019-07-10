@@ -28,12 +28,13 @@
       </div>
       <div v-if="displayStart" id="start-screen">
         <h2>Vocabulary Builder</h2>
+				<module-picker :modules="modules"></module-picker>
       </div>
   </div>
 </template>
 
 <script>
-
+import ModulePicker from '@/components/ModulePicker.vue'
 export default {
   name: "pause-screen",
   computed:{
@@ -67,7 +68,10 @@ export default {
       return this.seenWords.sort((firstWord, secondWord) => ( firstWord.timesRight / (firstWord.timesRight + firstWord.timesWrong) ) - ( secondWord.timesRight / (secondWord.timesRight + secondWord.timesWrong) ) );
     }
   },
-  props: ["builderState", "seenWords"],
+	props: ["builderState", "seenWords","modules"],
+	components: {
+		'module-picker' : ModulePicker
+	}
 }
 </script>
 
