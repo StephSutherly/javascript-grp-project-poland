@@ -379,7 +379,7 @@ export default {
   background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
   /* min-height: 240px; */
-  height: 500px;
+  height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
