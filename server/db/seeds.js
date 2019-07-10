@@ -11,7 +11,7 @@ db.words.insertMany([
   wordKnown: false
 },
 {
-  Polish: "Proszę \u{1F44F}",
+  Polish: "Proszę \u{1F64F}",
   English: "Please",
   timesRight: 0,
   timesWrong: 0,
@@ -27,7 +27,7 @@ db.words.insertMany([
   wordKnown: false
 },
 {
-  Polish: "Dzień dobry!\u{23F0}",
+  Polish: "Dzień dobry! \u{23F0}",
   English: "Good morning",
   timesRight: 0,
   timesWrong: 0,
@@ -68,7 +68,7 @@ db.words.insertMany([
   wordKnown: true
 },
 {
-  Polish: "Nazywam się... \u{1F449} \u{1F601}",
+  Polish: "Nazywam się... \u{1F449}\u{1F601}",
   English: "My name is...",
   timesRight: 0,
   timesWrong: 0,

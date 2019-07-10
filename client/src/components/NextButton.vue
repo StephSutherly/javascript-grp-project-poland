@@ -20,27 +20,25 @@ export default {
 <style scoped>
 .wrapper {
     text-align: center;
-    position: relative;
+    position: absolute;
     display: block;
-    width: 100%;
-    float: right;
-    bottom: 0;
+    top: 20px;
+    right: 15px;
 }
 button {
   color: black;
   font-family: 'Quicksand', sans-serif;
   height: 40px;
-  width: 120px;
   font-size: 20px;
-  display: block;
+  display: inline-block;
   background-color: yellow;
   border-radius: 5px;
   border: 2px solid green;
-  float: right;
+  margin: 2px;
+  /* float: right; */
   align: center;
-  float: right;
-  position: absolute;
-  top: 40%;
+  /* position: absolute; */
+  /* top: 40%; */
 }
 
 </style>

@@ -25,7 +25,7 @@ export default {
 <style lang="css" scoped>
 
 h3 {
-  float: left;
+  text-align: center;
   font-size: 40px;
   padding: 5px;
   height: 50px;
