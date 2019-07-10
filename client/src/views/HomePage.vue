@@ -68,6 +68,7 @@ export default {
   border-radius: 5px;
   text-align: center;
   margin: 20px;
+
 }
 #vocab-builder-button a {
   text-decoration: none;

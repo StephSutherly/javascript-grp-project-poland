@@ -77,22 +77,15 @@ export default {
 
 <style lang="css" scoped>
 
-#pause-screen {
+#pause-screen, #start-screen  {
   height: flex;
   border-radius: 5px;
   background-color: #cce6ff;
   padding: 10px;
-  margin-top: 5px;
 }
 
 h2 {
     text-align: left;
-    /* font-size: 30px;
-    padding: 5px;
-    height: 35px;
-    border-radius: 5px;
-    background-color: #80bfff;
-    width: 240px; */
 }
 
 h3 {
