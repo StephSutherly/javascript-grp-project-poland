@@ -11,16 +11,18 @@ export default {
   name: "continue-button",
   computed:{
     displayButton: function(){
-      if (this.builderState === "pause" || this.builderState === "start")
+      if (this.builderState === "pause" || this.builderState === "start" || this.builderState === "newWord")
         return true
       else
         return false
     },
     text: function(){
       if (this.builderState === "start")
-        return "Start"
+        return "Start \u{25B6}"
+      else if (this.builderState === "newWord")
+        return "Got it! \u{2705}"
       else (this.builderState === "pause")
-        return "Continue"
+        return "Continue \u{27A1}"
     }
   },
   methods: {

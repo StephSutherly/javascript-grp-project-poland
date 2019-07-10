@@ -6,6 +6,7 @@
     <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
     <continue-button :builderState="builderState"></continue-button>
     <pause-button :builderState="builderState"></pause-button>
+    <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import BuilderFeedback from "@/components/BuilderFeedback.vue";
 import PauseScreen from "@/components/PauseScreen.vue";
 import PauseButton from "@/components/PauseButton.vue";
 import ContinueButton from "@/components/ContinueButton.vue";
+import NewWord from "@/components/NewWord.vue";
 
 export default {
   name: "vocab-builder-view",
@@ -26,7 +28,8 @@ export default {
     "builder-feedback": BuilderFeedback,
     "pause-screen": PauseScreen,
     "pause-button": PauseButton,
-    "continue-button": ContinueButton
+    "continue-button": ContinueButton,
+    "new-word": NewWord
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -43,11 +46,10 @@ export default {
     });
     eventBus.$on("continue-button-clicked", () => {
       console.log("continue button clicked!");
+      if (this.builderState === "start")
+        this.getModule();
       this.builderState = "testing";
     });
-
-		this.getModule();
-	console.log(this.emojis[0])
   },
   methods: {
     getModule: function() {
@@ -69,6 +71,8 @@ export default {
 			}
 			else
       	this.questionWord = this.getQuestionWord();
+      if (this.wordUntouched(this.questionWord))
+          this.builderState = "newWord";
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
@@ -182,7 +186,10 @@ export default {
         let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
         arrayWithoutQWord.splice(pos, 1);
       }
-      tempButtonWords.push(this.questionWord);
+			tempButtonWords.push(this.questionWord);
+			tempButtonWords=this.shuffle(tempButtonWords);
+
+
       return tempButtonWords;
     },
     getQuestionWord: function() {
@@ -250,13 +257,13 @@ export default {
 				.then(this.getModule())
 		},
 		wordReady: function(word){
-			if (word.timesRight > 4)
+			if (word.timesRight > 2)
 				return true
 			return false
 		},
 		wordKnown: function(word) {
         if (
-          (word.timesRight > 5 && word.timesRight > word.timesWrong) ||
+          (word.timesRight > 4 && word.timesRight > word.timesWrong) ||
           word.isKnown
         )
           return true;
@@ -336,6 +343,16 @@ export default {
 						console.log("filler word added to testing Words:", newWord.English)
 						return true
 		},
+		shuffle:function(a){     ///taken from wikipedia
+    var j, x, i;
+			for (i = a.length - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					x = a[i];
+					a[i] = a[j];
+					a[j] = x;
+			}
+    	return a;
+		}
 	},
   data() {
     return {
@@ -346,8 +363,8 @@ export default {
 			feedbackWord: {},
 			hasBeenRun: false,
 			seenWords: [],
-			emojis: ['\u{1F4A9}'],
-      builderState: "start" ///"testing" "won" "lost" "pause"
+      newWord: {},
+      builderState: "start" ///"testing" "won" "lost" "pause" "start" "newWord"
     };
   }
 };

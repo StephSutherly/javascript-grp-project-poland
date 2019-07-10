@@ -9,6 +9,7 @@
       knowledge about this wonderful region of Europe, its culture and
       the customs that prevail in this country.</p>
     </div>
+    
 
     <div id="vocab-builder">
       <h2>Vocab Builder</h2>

@@ -7,11 +7,11 @@
 
     <div class="dropdown">
 
-      <button class="dropbtn">More Info</button>
+      <button class="dropbtn">Learn More</button>
 
         <div class="dropdown-content">
 
-          <router-link :to="{name: 'culture-page'}">Polish Culture</router-link>
+          <router-link :to="{name: 'culture-page'}">Culture</router-link>
 
           <router-link :to="{name: 'polish-language'}">Language</router-link>
 
