@@ -118,13 +118,15 @@ export default {
 					}
 				}
 
+				
 				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
+					console.group("ready fillers needed")
 					let i=0
 					let fail=false
 					while (  i< (3-newTestingArray.length)  && fail===false )
 					{
-						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler unready words`,`i=${i}`)
+						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler ready words`,`i=${i}`)
 						if (!this.addFillerReadyWordTo(newTestingArray))
 							{
 								console.log("no possible unready fillers")
@@ -132,25 +134,30 @@ export default {
 							}
 						i++
 					}
+					console.log("finished adding unready fillers",`newTestingArray length = ${newTestingArray.length}`,`i=${i}`,`fail=${fail}`)
+					console.groupEnd()
 				}
 				else
 					console.log(`newTestingArray length is ${newTestingArray.length}, no unready fillers required`)
 
 
-				if (newTestingArray.length<3)  //if there still aren't at least 3 words to cycle through, fill up with words if possible
+				if (newTestingArray.length<3)  //if there still aren't at least 3 words to cycle through, fill up with  Knownwords if possible
 				{
+					console.group("known fillers needed")
 					let i=0
 					let fail=false
 					while (  i< (3-newTestingArray.length)  && fail===false )
 					{
-						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler ready words`)
+						console.log(`new testing words is too short, length ${newTestingArray.length}, adding filler known words`)
 						if (!this.addFillerKnownWordTo(newTestingArray))
 							{
-								console.log("no possible ready fillers")
+								console.log("no possible known fillers")
 								fail=true
 							}
 						i++
 					}
+					console.log("finished adding known fillers",`newTestingArray length = ${newTestingArray.length}`,`i=${i}`,`fail=${fail}`)
+					console.groupEnd()
 				}
 				else
 					console.log(`newTestingArray length is ${newTestingArray.length}, no ready fillers required`)
@@ -298,7 +305,9 @@ export default {
 		addFillerReadyWordTo: function(arrayToAddTo){
 						let possibleFillerWords = this.allTouchedWordsNotKnownReady()
 						if (possibleFillerWords.length===0)
-							return false
+						{
+							return false;
+						}
 
 						console.log("possible ready filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
@@ -313,7 +322,9 @@ export default {
 		addFillerKnownWordTo: function(arrayToAddTo){
 						let possibleFillerWords = this.allTouchedWordsKnown()
 						if (possibleFillerWords.length===0)
-							return false
+						{
+							return false;
+						}
 
 						console.log("possible known filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
