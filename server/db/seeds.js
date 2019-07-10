@@ -135,7 +135,7 @@ db.foodwords.insertMany([
 		wordKnown: false
 	},
 	{
-		Polish: "banan \u{1F34C}",
+		Polish: "Banan \u{1F34C}",
 		English: "Banana",
 		timesRight: 0,
 		timesWrong: 0,
@@ -157,10 +157,10 @@ db.foodwords.insertMany([
 		timesWrong: 0,
 		studyOrder: 4,
 		wordKnown: false
-	
+
 	},
 	{
-		Polish: "pizza \u{1F355}",
+		Polish: "Pizza \u{1F355}",
 		English: "Pizza",
 		timesRight: 0,
 		timesWrong: 0,
@@ -168,7 +168,7 @@ db.foodwords.insertMany([
 		wordKnown: true
 	},
 	{
-		Polish: "ciastko \u{1F382}",
+		Polish: "Ciastko \u{1F382}",
 		English: "Cake",
 		timesRight: 0,
 		timesWrong: 0,
@@ -176,7 +176,7 @@ db.foodwords.insertMany([
 		wordKnown: false
 	},
 	{
-		Polish: "arbuz \u{1F349}",
+		Polish: "Arbuz \u{1F349}",
 		English: "Watermelon",
 		timesRight: 0,
 		timesWrong: 0,
@@ -184,7 +184,7 @@ db.foodwords.insertMany([
 		wordKnown: false
 	},
 	{
-		Polish: "piwo \u{1F37A}",
+		Polish: "Piwo \u{1F37A}",
 		English: "Beer",
 		timesRight: 0,
 		timesWrong: 0,
@@ -192,7 +192,7 @@ db.foodwords.insertMany([
 		wordKnown: true
 	},
 	{
-		Polish: "wino \u{1F377}",
+		Polish: "Wino \u{1F377}",
 		English: "Wine",
 		timesRight: 0,
 		timesWrong: 0,
@@ -200,4 +200,3 @@ db.foodwords.insertMany([
 		wordKnown: false
 	}
 	]);
-	

@@ -1,5 +1,5 @@
 <template>
-	<select v-on:change="handleChange" v-model="selected" >
+	<select v-on:change="handleChange" v-model="selected">
 		<option v-for="module in this.modules" v-bind:value="module"> {{module.label}} </option>
 	</select>
 </template>
@@ -25,6 +25,13 @@ export default {
 
 <style scoped>
 
+select {
+ width: 350px;
+ height: 35px;
+ padding: 5px 35px 5px 5px;
+ margin: 15px 0;
+ font-size: 20px;
+ border: 1px solid #99ccff;
+}
+
 </style>
-
-
