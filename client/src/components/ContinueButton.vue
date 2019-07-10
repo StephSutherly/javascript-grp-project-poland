@@ -43,7 +43,7 @@ button {
   height: 40px;
   font-size: 20px;
   display: inline-block;
-  background-color: yellow;
+  background-color: #ffff66;
   border-radius: 5px;
   border: 2px solid green;
   margin: 2px;
