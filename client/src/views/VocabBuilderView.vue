@@ -6,6 +6,7 @@
     <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
     <continue-button :builderState="builderState"></continue-button>
     <pause-button :builderState="builderState"></pause-button>
+    <new-word :builderState="builderState"></new-word>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import BuilderFeedback from "@/components/BuilderFeedback.vue";
 import PauseScreen from "@/components/PauseScreen.vue";
 import PauseButton from "@/components/PauseButton.vue";
 import ContinueButton from "@/components/ContinueButton.vue";
+import NewWord from "@/components/NewWord.vue";
 
 export default {
   name: "vocab-builder-view",
@@ -26,7 +28,8 @@ export default {
     "builder-feedback": BuilderFeedback,
     "pause-screen": PauseScreen,
     "pause-button": PauseButton,
-    "continue-button": ContinueButton
+    "continue-button": ContinueButton,
+    "new-word": NewWord
   },
   mounted() {
     eventBus.$on("choice-button-clicked", word => {
@@ -112,13 +115,13 @@ export default {
 					{
 							let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
 							let highestOrder = Math.max(...orders)
-							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1)) 
+							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1))
 							newTestingArray.push(newWord)
 							console.log(`adding new word ${newWord.English}`)
 					}
 				}
 
-				
+
 				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
 					console.group("ready fillers needed")
@@ -206,7 +209,7 @@ export default {
 			if (possibleQuestionWords.length === 0) console.log("possibleQuestionWords empty");
 			else
 			{
-				for (let word of possibleQuestionWords) 
+				for (let word of possibleQuestionWords)
 					console.log(word.English,word.studyOrder);
 			}
 
@@ -347,7 +350,7 @@ export default {
 			hasBeenRun: false,
 			seenWords: [],
 			emojis: ['\u{1F4A9}'],
-      builderState: "start" ///"testing" "won" "lost" "pause"
+      builderState: "start" ///"testing" "won" "lost" "pause" "start" "newWord"
     };
   }
 };

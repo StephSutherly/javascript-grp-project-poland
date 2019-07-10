@@ -4,9 +4,20 @@
         <h2>Review</h2>
         <h3>You got {{this.percentageRight}}% Correct</h3>
         <h5>Word List</h5>
-        <ul>
-          <li v-for="word in this.seenWords">{{ word.Polish }}</li>
-        </ul>
+        <!-- <ul>
+
+        </ul> -->
+        <table>
+          <tr>
+            <th>English</th>
+            <th>Polish</th>
+            <th>Times Correct</th>
+            <th>Times Incorrect</th>
+          </tr>
+          <tr v-for="word in this.seenWords">
+            {{ word.English }}
+          </tr>
+        </table>
       </div>
       <div v-if="displayStart" id="start-screen">
         <h2>Vocabulary Builder</h2>
@@ -62,9 +73,12 @@ h2 {
 ul {
   list-style: none;
 }
+
+table {
+  width: 70%;
+  background-color: white;
+}
 </style>
 
 
 <!-- Polish flag window exists in VocabBuilder so no need to change window.  -->
-
-<!-- Start Screen  -->
