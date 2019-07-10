@@ -21,7 +21,7 @@ const router = new Router({
 			component: CulturePage
 		},
 		{
-			path: '/home',
+			path: '/',
 			name: 'home-page',
 			component: HomePage
 		},

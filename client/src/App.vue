@@ -7,7 +7,7 @@
 		<!-- </body> -->
 		</div>
 		<footer id="app-footer" class="cf">
-			<h6>Copyright © 2019 BBCPolish</h6>
+			<h6>Copyright © 2019 LearnAboutPoland</h6>
 		</footer>
 	</div>
 </template>
