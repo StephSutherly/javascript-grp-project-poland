@@ -32,24 +32,21 @@ export default {
 
 <style lang="css" scoped>
 .view-page {
-  background: white;
-  opacity: 0.9;
-  font-family: Arial;
-  padding: 15px;
-  margin: 0;
+  width: 90%;
+  margin: 20px 5% 20px 3.5%;
+  border-radius: 4px;
 }
 .section.inline {
   display: inline;
 }
-ul{
+ul {
   list-style-type: none;
 }
 
-li{
+li {
   font-size: 20px;
 }
-
-img{
+img {
   float: left;
   padding: 20px;
 }

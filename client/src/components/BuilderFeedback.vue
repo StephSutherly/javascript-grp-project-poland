@@ -1,5 +1,5 @@
 <template>
-  <span>{{text}}</span>
+  <span class="builder-feedback">{{text}}</span>
 </template>
 
 <script>

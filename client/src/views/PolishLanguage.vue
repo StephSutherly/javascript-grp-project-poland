@@ -60,14 +60,14 @@ export default {
 
 <style lang="css" scoped>
 .view-page {
-  background: white;
-  opacity: 0.8;
-  padding: 15px;
-  font-family: Arial;
-
+  width: 90%;
+  margin: 20px 5% 20px 3.5%;
+  border-radius: 4px;
 }
-p {
-  font-size: 20px;
+.section {
+  width: 80%;
+  float: left;
+  clear: both;
 }
 
 </style>

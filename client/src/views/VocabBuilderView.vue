@@ -1,5 +1,5 @@
 <template>
-  <div class="vocab-builder-view">
+  <div class="vocab-builder-view cf">
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
@@ -115,13 +115,13 @@ export default {
 					{
 							let orders = allWordsReadyOrKnown.map(word => word.studyOrder)
 							let highestOrder = Math.max(...orders)
-							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1)) 
+							let newWord = this.allWords.find(word => (word.studyOrder===highestOrder+1))
 							newTestingArray.push(newWord)
 							console.log(`adding new word ${newWord.English}`)
 					}
 				}
 
-				
+
 				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
 					console.group("ready fillers needed")
@@ -212,7 +212,7 @@ export default {
 			if (possibleQuestionWords.length === 0) console.log("possibleQuestionWords empty");
 			else
 			{
-				for (let word of possibleQuestionWords) 
+				for (let word of possibleQuestionWords)
 					console.log(word.English,word.studyOrder);
 			}
 
@@ -373,9 +373,10 @@ export default {
 
 .vocab-builder-view {
   /* background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat; */
-  background: linear-gradient(to bottom, rgba(255,255,255,.95) 50%, rgba(220,20,60,.95) 50%);
+  background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
-  height: 240px;
+  /* min-height: 240px; */
+  height: 500px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
