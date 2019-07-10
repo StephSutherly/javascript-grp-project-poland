@@ -38,6 +38,7 @@ export default {
 
 #button-list {
   display: flex;
+  margin-bottom: 20px; 
 }
 
 /* choice-button {

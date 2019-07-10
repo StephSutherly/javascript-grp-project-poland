@@ -36,11 +36,18 @@ export default {
 	background-attachment: fixed;
 }
 #app > .container {
-	height: 1000px;
+	min-height: 750px;
 }
 #app > .container,
 #app-footer {
 	clear: both;
+}
+.view-page {
+	min-height: 700px;
+	background: white;
+	opacity: 0.9;
+	padding: 15px;
+	font-family: Arial;
 }
 body {
 	clear: both;
