@@ -4,10 +4,11 @@
         <h2>Review</h2>
         <h3 v-if="totalRight + totalWrong > 0">You got {{this.percentageRight}}% Correct</h3>
         <h3 v-else>No words to review - Keep going, you've got this! &#128522;</h3>
-        <h5>Word List</h5>
+        <h5 class="word-list-title">Word List</h5>
         <!-- <ul>
 
         </ul> -->
+        <div class="table-wrapper cf">
         <table>
           <tr>
             <th>English</th>
@@ -16,9 +17,14 @@
             <th>Times Incorrect</th>
           </tr>
           <tr v-for="word in this.seenWords">
-            {{ word.English }}
+
+            <td>{{ word.English }}</td>
+            <td>{{ word.Polish }}</td>
+            <td>{{ word.timesRight }}</td>
+            <td>{{ word.timesWrong }}</td>
           </tr>
         </table>
+      </div><!-- .table-wrapper -->
       </div>
       <div v-if="displayStart" id="start-screen">
         <h2>Vocabulary Builder</h2>
@@ -66,13 +72,23 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+#pause-screen {
+  height: 500px;
+}
 h2 {
   text-align: left;
 }
 
+h5.word-list-title {
+  padding-top: 20px;
+}
+
 ul {
   list-style: none;
+}
+
+.table-wrapper {
+  display: block;
 }
 
 table {

@@ -44,6 +44,7 @@ export default {
 }
 .view-page {
 	min-height: 700px;
+	height: 100%;
 	background: white;
 	opacity: 0.9;
 	padding: 15px;
