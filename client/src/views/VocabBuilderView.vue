@@ -6,7 +6,7 @@
     <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
     <continue-button :builderState="builderState"></continue-button>
     <pause-button :builderState="builderState"></pause-button>
-    <new-word :builderState="builderState"></new-word>
+    <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
   </div>
 </template>
 
@@ -72,6 +72,8 @@ export default {
 			}
 			else
       	this.questionWord = this.getQuestionWord();
+      if (this.wordUntouched(this.questionWord))
+          this.builderState = "newWord";
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
@@ -338,7 +340,8 @@ export default {
 						possibleFillerWords.splice(pos,1)
 						console.log("filler word added to testing Words:", newWord.English)
 						return true
-		},
+		}
+
 	},
   data() {
     return {
@@ -349,6 +352,7 @@ export default {
 			feedbackWord: {},
 			hasBeenRun: false,
 			seenWords: [],
+      newWord: {},
 			emojis: ['\u{1F4A9}'],
       builderState: "start" ///"testing" "won" "lost" "pause" "start" "newWord"
     };
