@@ -187,6 +187,8 @@ export default {
       }
 			tempButtonWords.push(this.questionWord);
 			tempButtonWords=this.shuffle(tempButtonWords);
+
+			
       return tempButtonWords;
     },
     getQuestionWord: function() {
