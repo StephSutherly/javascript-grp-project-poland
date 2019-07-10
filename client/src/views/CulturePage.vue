@@ -4,7 +4,9 @@
     <!-- <h2>Culture</h2> -->
 
     <div class="section">
-      <h3>Info</h3>
+      <header>
+        <h3>Info</h3>
+      </header>
 
       <p><span>Capital</span> Warsaw</p>
 
@@ -16,7 +18,9 @@
 
       <p><span>Religions</span> (Based on 2011 survey of 91.2% of the population) Roman Catholic 87.5% (around 75% who are practicing), Opting out of responding 7.1%, Non-believer 2.4%, Not stated 1.6%, Eastern Orthodox 1.3%, Other religions 1%.</p>
 
-      <p><span>Government</span> Republic</p><p>Currency: Polish Zloty</p>
+      <p><span>Government</span> Republic</p>
+      
+      <p><span>Currency:</span> Polish Zloty</p>
 
       <p><span>Local time</span> GMT+01:00</p>
 
@@ -24,7 +28,9 @@
     </div>
 
     <div class="section">
-      <h3>Culture</h3>
+      <header>
+        <h3>Culture</h3>
+      </header>
       <p>With a rich history that can be traced back over hundreds of years, Poland has a unique and diverse culture. As a country the minority populations are concentrated around the borders with the German minority mainly residing near the city of Opole in the southwest. In Warsaw and other major cities there has been a recent increase in the inward migration of other nationalities.</p>
 
       <p>When it comes to local culture, religion plays a vital role in society and an even bigger part in Polish culture. It is common for most businesses to close on religious holidays – they are considered to be national holidays in Poland.</p>
@@ -62,17 +68,21 @@ export default {
   justify-content: space-between;
   background: white;
   opacity: 0.9;
-
+  border-radius: 4px;
   font-family: Arial;
 }
-.section > h3 {
+#culture .section header,
+#culture .section header h3 {
+  background: white;
+  z-index: 1000;
+  opacity: 1;
+  display: block;
+}
+.section header h3 {
   font-size: 24px;
 }
 .section > p span {
   font-weight: bold;
-}
-p {
-  font-size: 20px;
 }
 
 </style>
