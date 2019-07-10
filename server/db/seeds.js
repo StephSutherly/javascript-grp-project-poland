@@ -124,3 +124,80 @@ db.words.insertMany([
   wordKnown: true
 }
 ]);
+
+db.foodwords.insertMany([
+	{
+		Polish: "Jabłko",
+		English: "Apple",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 1,
+		wordKnown: false
+	},
+	{
+		Polish: "banan",
+		English: "Banana",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 2,
+		wordKnown: true
+	},
+	{
+		Polish: "Truskawka",
+		English: "Strawberry",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 3,
+		wordKnown: false
+	},
+	{
+		Polish: "Berger",
+		English: "Burger",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 4,
+		wordKnown: false
+	
+	},
+	{
+		Polish: "pizza",
+		English: "Pizza",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 5,
+		wordKnown: true
+	},
+	{
+		Polish: "ciastko",
+		English: "Cake",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 6,
+		wordKnown: false
+	},
+	{
+		Polish: "arbuz",
+		English: "Watermelon",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 7,
+		wordKnown: false
+	},
+	{
+		Polish: "piwo",
+		English: "Beer",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 8,
+		wordKnown: true
+	},
+	{
+		Polish: "wino",
+		English: "Wine",
+		timesRight: 0,
+		timesWrong: 0,
+		studyOrder: 9,
+		wordKnown: false
+	}
+	]);
+	
