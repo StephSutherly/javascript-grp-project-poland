@@ -367,7 +367,7 @@ export default {
 			seenWords: [],
       newWord: {},
 			builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
-			modules: [{label: "Basic Vocabulary and Greetings", path: 'basicwords'},{label: "Food and Drink", path: 'foodwords'}],
+			modules: [{label: "Basic Vocabulary and Greetings \u{1F308}", path: 'basicwords'},{label: "Food and Drink \u{1f374}", path: 'foodwords'}],
 			currentModule: {}
     };
   }

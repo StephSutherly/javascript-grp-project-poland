@@ -1,5 +1,5 @@
 <template>
-	<select v-on:change="handleChange" v-model="selected">
+	<select v-on:change="handleChange" v-model="selected" >
 		<option v-for="module in this.modules" v-bind:value="module"> {{module.label}} </option>
 	</select>
 </template>
@@ -17,7 +17,7 @@ export default {
 	props: ['modules'],
 	data() {
 		return {
-			selected: {}
+			selected: {label: "Basic Vocabulary and Greetings", path: 'basicwords'}
 		}
 	}
 }

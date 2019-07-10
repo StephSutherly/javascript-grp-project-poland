@@ -135,7 +135,7 @@ db.foodwords.insertMany([
 		wordKnown: false
 	},
 	{
-		Polish: "banan \u{1F34D}",
+		Polish: "banan \u{1F34C}",
 		English: "Banana",
 		timesRight: 0,
 		timesWrong: 0,
