@@ -6,11 +6,7 @@
     <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
     <continue-button :builderState="builderState"></continue-button>
     <pause-button :builderState="builderState"></pause-button>
-<<<<<<< HEAD
     <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
-=======
-    
->>>>>>> 79828fbcaf59cc79f69ae32d479cf2383bdc4c38
   </div>
 </template>
 
