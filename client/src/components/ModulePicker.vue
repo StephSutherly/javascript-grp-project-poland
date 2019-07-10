@@ -1,16 +1,23 @@
 <template>
-	<select v-model="selected">
-		<option v-for="module in this.modules"  v-bind:key="module" v-bind:value="module.collection"> {{module.label}} </option>
+	<select v-on:change="handleChange" v-model="selected">
+		<option v-for="module in this.modules" v-bind:value="module"> {{module.label}} </option>
 	</select>
 </template>
 
 <script>
+import {eventBus} from "@/main.js"
+
 export default {
 	name: 'module-picker',
+	methods: {
+		handleChange: function(){
+			eventBus.$emit( 'module-select-changed',this.selected)
+		}
+	},
 	props: ['modules'],
 	data() {
 		return {
-			selected: ""
+			selected: {}
 		}
 	}
 }

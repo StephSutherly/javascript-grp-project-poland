@@ -1,5 +1,5 @@
 <template>
-  <div class="vocab-builder-view cf">
+  <div class="vocab-builder-view cf" >
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
@@ -32,6 +32,7 @@ export default {
     "new-word": NewWord
   },
   mounted() {
+		eventBus.$on("module-select-changed", module => (this.currentModule=module))
     eventBus.$on("choice-button-clicked", word => {
       if (word === this.questionWord) this.gotRight(word);
       else this.gotWrong(word);
@@ -53,7 +54,8 @@ export default {
   },
   methods: {
     getModule: function() {
-      fetch(`http://localhost:3000/api/${currentModule.path}/`)
+			console.log(`fetching from http://localhost:3000/api/${this.currentModule.path}/`)
+      fetch(`http://localhost:3000/api/${this.currentModule.path}/`)
         .then(res => res.json())
         .then(data => {
           this.allWords = data;
@@ -365,8 +367,8 @@ export default {
 			seenWords: [],
       newWord: {},
 			builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
-			currentModule: modules[0]
-			modules: [{label: "Basic Vocabulary and Greetings", path: 'basicwords'},{label: "Food and Drink", path: 'foodwords'}]
+			modules: [{label: "Basic Vocabulary and Greetings", path: 'basicwords'},{label: "Food and Drink", path: 'foodwords'}],
+			currentModule: {}
     };
   }
 };
