@@ -68,7 +68,10 @@ export default {
 				console.log(`new session first word set to ${this.questionWord.English}`)
 			}
 			else
-      	this.questionWord = this.getQuestionWord();
+				this.questionWord = this.getQuestionWord();
+				
+			
+
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
@@ -182,7 +185,8 @@ export default {
         let pos = arrayWithoutQWord.indexOf(wordToBeAdded);
         arrayWithoutQWord.splice(pos, 1);
       }
-      tempButtonWords.push(this.questionWord);
+			tempButtonWords.push(this.questionWord);
+			tempButtonWords=this.shuffle(tempButtonWords);
       return tempButtonWords;
     },
     getQuestionWord: function() {
@@ -250,7 +254,7 @@ export default {
 				.then(this.getModule())
 		},
 		wordReady: function(word){
-			if (word.timesRight > 4)
+			if (word.timesRight > 3)
 				return true
 			return false
 		},
@@ -336,6 +340,16 @@ export default {
 						console.log("filler word added to testing Words:", newWord.English)
 						return true
 		},
+		shuffle:function(a){     ///taken from wikipedia
+    var j, x, i;
+			for (i = a.length - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					x = a[i];
+					a[i] = a[j];
+					a[j] = x;
+			}
+    	return a;
+		}
 	},
   data() {
     return {
