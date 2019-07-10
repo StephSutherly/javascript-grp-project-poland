@@ -3,7 +3,7 @@
     <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
     <builder-feedback :builderState="builderState"></builder-feedback>
     <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-    <pause-screen :builderState="builderState" :seenWords="seenWords"></pause-screen>
+    <pause-screen :builderState="builderState" :seenWords="seenWords" :modules="modules"></pause-screen>
     <continue-button :builderState="builderState"></continue-button>
     <pause-button :builderState="builderState"></pause-button>
     <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
@@ -364,7 +364,8 @@ export default {
 			hasBeenRun: false,
 			seenWords: [],
       newWord: {},
-      builderState: "start" ///"testing" "won" "lost" "pause" "start" "newWord"
+			builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
+			modules: ['basic','food']
     };
   }
 };
