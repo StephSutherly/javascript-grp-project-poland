@@ -2,7 +2,8 @@
   <div>
       <div v-if="displayPause" id="pause-screen">
         <h2>Review</h2>
-        <h3>You got {{this.percentageRight}}% Correct</h3>
+        <h3 v-if="totalRight + totalWrong > 0">You got {{this.percentageRight}}% Correct</h3>
+        <h3 v-else>No words to review - Keep going, you've got this! &#128522;</h3>
         <h5>Word List</h5>
         <!-- <ul>
 
