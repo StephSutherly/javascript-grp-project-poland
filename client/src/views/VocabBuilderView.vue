@@ -21,6 +21,7 @@ import PauseScreen from "@/components/PauseScreen.vue";
 import PauseButton from "@/components/PauseButton.vue";
 import ContinueButton from "@/components/ContinueButton.vue";
 import NewWord from "@/components/NewWord.vue";
+import Speech from 'speak-tts'
 
 export default {
   name: "vocab-builder-view",
@@ -57,6 +58,24 @@ export default {
         this.getModule();
       this.builderState = "testing";
     });
+
+    this.speech = new Speech()
+    this.speech.init({
+      'volume': 1,
+      lang: "en-GB", //'lang': 'pl-PL',
+      'rate': 1,
+			'pitch': 1,
+			'voice': 'Zosia',
+      'splitSentences': true
+    }).then((data) => {
+      console.log("TTS ok") //, data)
+    }).catch(err => {
+      console.error("tts - an error occured while initializing : ", err)
+    })
+		
+
+
+
   },
   methods: {
     getModule: function () {
@@ -77,6 +96,14 @@ export default {
         console.log(`new session first word set to ${this.questionWord.English}`)
       } else
         this.questionWord = this.getQuestionWord();
+      console.log(`trying to play tts for ${this.questionWord.Polish}`)
+      this.speech.speak({
+        text: this.questionWord.Polish
+      }).then(() => {
+        console.log(`TTS for ${this.questionWord.Polish} played `)
+      }).catch(e => {
+        console.error("TTS error : ", e)
+      })
       if (this.wordUntouched(this.questionWord))
         this.builderState = "newWord";
       this.buttonWords = this.getButtonWords();
@@ -123,7 +150,7 @@ export default {
         if (newTestingArray.length < 3) //if there aren't at least 3 words to cycle through, fill up with ready words if possible
         {
           console.group("ready fillers needed")
-					this.addFillerWord(newTestingArray,this.addFillerReadyWordTo)
+          this.addFillerWord(newTestingArray, this.addFillerReadyWordTo)
           console.groupEnd()
         } else
           console.log(`newTestingArray length is ${newTestingArray.length}, no unready fillers required`)
@@ -131,7 +158,7 @@ export default {
         if (newTestingArray.length < 3) //if there still aren't at least 3 words to cycle through, fill up with known words if possible
         {
           console.group("known fillers needed")
-					this.addFillerWord(newTestingArray,this.addFillerKnownWordTo)
+          this.addFillerWord(newTestingArray, this.addFillerKnownWordTo)
           console.groupEnd()
         } else
           console.log(`newTestingArray length is ${newTestingArray.length}, no ready fillers required`)
@@ -277,19 +304,19 @@ export default {
       else
         return false
     },
-		addFillerWord:function(arrayToAddTo,fillerAdderFunction){
-					let i = 0
-          let fail = false
-          while (i < (3 - arrayToAddTo.length) && fail === false) {
-            console.log(`new testing words is too short, length ${arrayToAddTo.length}, adding filler words`)
-            if (!fillerAdderFunction(arrayToAddTo)) {
-              console.log("no possible fillers")
-              fail = true
-            }
-            i++
-          }
-          console.log("finished adding fillers", `newTestingArray length = ${arrayToAddTo.length}`, `i=${i}`, `fail=${fail}`)
-		},
+    addFillerWord: function (arrayToAddTo, fillerAdderFunction) {
+      let i = 0
+      let fail = false
+      while (i < (3 - arrayToAddTo.length) && fail === false) {
+        console.log(`new testing words is too short, length ${arrayToAddTo.length}, adding filler words`)
+        if (!fillerAdderFunction(arrayToAddTo)) {
+          console.log("no possible fillers")
+          fail = true
+        }
+        i++
+      }
+      console.log("finished adding fillers", `newTestingArray length = ${arrayToAddTo.length}`, `i=${i}`, `fail=${fail}`)
+    },
     addFillerReadyWordTo: function (arrayToAddTo) {
       let possibleFillerWords = this.allTouchedWordsNotKnownReady()
       if (possibleFillerWords.length === 0) {
@@ -305,7 +332,7 @@ export default {
       possibleFillerWords.splice(pos, 1)
       console.log("filler word added to testing Words:", newWord.English)
       return true
-		},
+    },
     addFillerKnownWordTo: function (arrayToAddTo) {
       let possibleFillerWords = this.allTouchedWordsKnown()
       if (possibleFillerWords.length === 0) {
@@ -351,7 +378,8 @@ export default {
         label: "Food and Drink \u{1f374}",
         path: 'foodwords'
       }],
-      currentModule: {}
+      currentModule: {},
+      speech: {}
     };
   }
 };
