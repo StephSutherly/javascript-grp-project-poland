@@ -1,17 +1,19 @@
 <template>
-  <div class="vocab-builder-view cf" >
-    <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
-    <builder-feedback :builderState="builderState"></builder-feedback>
-    <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-    <pause-screen :builderState="builderState" :seenWords="seenWords" :modules="modules"></pause-screen>
-    <continue-button :builderState="builderState"></continue-button>
-    <pause-button :builderState="builderState"></pause-button>
-    <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
-  </div>
+<div class="vocab-builder-view cf">
+  <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
+  <builder-feedback :builderState="builderState"></builder-feedback>
+  <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
+  <pause-screen :builderState="builderState" :seenWords="seenWords" :modules="modules"></pause-screen>
+  <continue-button :builderState="builderState"></continue-button>
+  <pause-button :builderState="builderState"></pause-button>
+  <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
+</div>
 </template>
 
 <script>
-import { eventBus } from "@/main.js";
+import {
+  eventBus
+} from "@/main.js";
 import ChoiceList from "@/components/ChoiceList.vue";
 import BuilderQuestion from "@/components/BuilderQuestion.vue";
 import BuilderFeedback from "@/components/BuilderFeedback.vue";
@@ -19,6 +21,7 @@ import PauseScreen from "@/components/PauseScreen.vue";
 import PauseButton from "@/components/PauseButton.vue";
 import ContinueButton from "@/components/ContinueButton.vue";
 import NewWord from "@/components/NewWord.vue";
+import Speech from 'speak-tts'
 
 export default {
   name: "vocab-builder-view",
@@ -32,7 +35,7 @@ export default {
     "new-word": NewWord
   },
   mounted() {
-		eventBus.$on("module-select-changed", module => (this.currentModule=module))
+    eventBus.$on("module-select-changed", module => (this.currentModule = module))
     eventBus.$on("choice-button-clicked", word => {
       if (word === this.questionWord) this.gotRight(word);
       else this.gotWrong(word);
@@ -44,7 +47,7 @@ export default {
       else if (this.builderState === "lost")
         this.updateWord(this.questionWord, false);
       this.builderState = "testing";
-		});
+    });
     eventBus.$on("pause-button-clicked", () => {
       console.log("pause button clicked!");
       this.builderState = "pause";
@@ -55,10 +58,28 @@ export default {
         this.getModule();
       this.builderState = "testing";
     });
+
+    this.speech = new Speech()
+    this.speech.init({
+      'volume': 1,
+      lang: "en-GB", //'lang': 'pl-PL',
+      'rate': 1,
+			'pitch': 1,
+			'voice': 'Zosia',
+      'splitSentences': true
+    }).then((data) => {
+      console.log("TTS ok") //, data)
+    }).catch(err => {
+      console.error("tts - an error occured while initializing : ", err)
+    })
+
+
+
+
   },
   methods: {
-    getModule: function() {
-			console.log(`fetching from http://localhost:3000/api/${this.currentModule.path}/`)
+    getModule: function () {
+      console.log(`fetching from http://localhost:3000/api/${this.currentModule.path}/`)
       fetch(`http://localhost:3000/api/${this.currentModule.path}/`)
         .then(res => res.json())
         .then(data => {
@@ -66,42 +87,46 @@ export default {
           this.updateWordLists();
         });
     },
-    updateWordLists: function() {
-			console.group('Find testing words')
-			this.testingWords = this.getTestingWords();
-			console.groupEnd()
-			if (this.hasBeenRun==false)
-			{
-				this.questionWord=this.testingWords[Math.floor(Math.random() * this.testingWords.length)];
-				console.log(`new session first word set to ${this.questionWord.English}`)
-			}
-			else
-      	this.questionWord = this.getQuestionWord();
+    updateWordLists: function () {
+      console.group('Find testing words')
+      this.testingWords = this.getTestingWords();
+      console.groupEnd()
+      if (this.hasBeenRun == false) {
+        this.questionWord = this.testingWords[Math.floor(Math.random() * this.testingWords.length)];
+        console.log(`new session first word set to ${this.questionWord.English}`)
+      } else
+        this.questionWord = this.getQuestionWord();
+      console.log(`trying to play tts for ${this.questionWord.Polish}`)
+      this.speech.speak({
+        text: this.questionWord.Polish
+      }).then(() => {
+        console.log(`TTS for ${this.questionWord.Polish} played `)
+      }).catch(e => {
+        console.error("TTS error : ", e)
+      })
       if (this.wordUntouched(this.questionWord))
-          this.builderState = "newWord";
+        this.builderState = "newWord";
       this.buttonWords = this.getButtonWords();
-			this.hasBeenRun=true
+      this.hasBeenRun = true
       this.seenWords = this.getSeenWords();
-    },
-    getTestingWords: function() {
-			if (this.isNewModule())
-			{
-				let firstTwoWords =  this.allWords.filter( (word) => word.studyOrder<3 )
-				console.log("new module, adding 2 words!",firstTwoWords[0].English,firstTwoWords[1].English)
-				return firstTwoWords
-			}
-			else
-			{
-				console.log("not new module!")
-				let allTouchedWordsNotKnownNotReady =  this.allTouchedWordsNotKnownNotReady()
-				console.log("allTouchedWordsNotKnownNotReady=",allTouchedWordsNotKnownNotReady.map(word => (word.English + " " + word.studyOrder)).join(' '))
 
-				let allWordsReadyOrKnown = this.allWords.filter(word => {
-					if (this.wordReady(word) || this.wordKnown(word))
-						return true
-					return false
-				})
-				let newTestingArray = allTouchedWordsNotKnownNotReady
+    },
+    getTestingWords: function () {
+      if (this.isNewModule()) {
+        let firstTwoWords = this.allWords.filter((word) => word.studyOrder < 3)
+        console.log("new module, adding 2 words!", firstTwoWords[0].English, firstTwoWords[1].English)
+        return firstTwoWords
+      } else {
+        console.log("not new module!")
+        let allTouchedWordsNotKnownNotReady = this.allTouchedWordsNotKnownNotReady()
+        console.log("allTouchedWordsNotKnownNotReady=", allTouchedWordsNotKnownNotReady.map(word => (word.English + " " + word.studyOrder)).join(' '))
+
+        let allWordsReadyOrKnown = this.allWords.filter(word => {
+          if (this.wordReady(word) || this.wordKnown(word))
+            return true
+          return false
+        })
+        let newTestingArray = allTouchedWordsNotKnownNotReady
 
 				if (this.timeForNewWord(newTestingArray))
 				{
@@ -162,7 +187,7 @@ export default {
 				return newTestingArray
 			}
     },
-    getButtonWords: function() {
+    getButtonWords: function () {
       let tempButtonWords = [];
       let arrayWithoutQWord = this.allWords.filter(
         word => word !== this.questionWord
@@ -205,32 +230,34 @@ export default {
 					console.log(word.English,word.studyOrder);
 			}
       return possibleQuestionWords[Math.floor(Math.random() * possibleQuestionWords.length)];
-		},
-    getSeenWords: function() {
+    },
+    getSeenWords: function () {
       return this.allWords.filter(
         word => word.timesRight > 0 || word.timesWrong > 0);
     },
-			isNewModule: function() {
-			let numberOfTouchedWords = this.allWords.filter(word => (!this.wordUntouched(word)) ).length
-			if (numberOfTouchedWords<2)
-				return true
-			return false
+    isNewModule: function () {
+      let numberOfTouchedWords = this.allWords.filter(word => (!this.wordUntouched(word))).length
+      if (numberOfTouchedWords < 2)
+        return true
+      return false
     },
-    gotRight: function(word) {
-			this.feedbackWord=this.questionWord;
+    gotRight: function (word) {
+      this.feedbackWord = this.questionWord;
       this.builderState = "won";
       // CSS Green class
     },
-    gotWrong: function(word) {
-			this.feedbackWord=this.questionWord;
+    gotWrong: function (word) {
+      this.feedbackWord = this.questionWord;
       this.builderState = "lost";
       // CSS Red Class
     },
-    updateWord: function(word, wasCorrect) {
-      let id =  word._id;
+    updateWord: function (word, wasCorrect) {
+      let id = word._id;
       let payload;
       if (wasCorrect == true)
-        payload = {'timesRight': word.timesRight + 1};
+        payload = {
+          'timesRight': word.timesRight + 1
+        };
       else {
         payload = {'timesWrong': word.timesWrong + 1 };
 			}
@@ -345,21 +372,27 @@ export default {
       allWords: [],
       testingWords: [],
       buttonWords: [],
-			questionWord: {},
-			feedbackWord: {},
-			hasBeenRun: false,
-			seenWords: [],
+      questionWord: {},
+      feedbackWord: {},
+      hasBeenRun: false,
+      seenWords: [],
       newWord: {},
-			builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
-			modules: [{label: "Basic Vocabulary and Greetings \u{1F308}", path: 'basicwords'},{label: "Food and Drink \u{1f374}", path: 'foodwords'}],
-			currentModule: {}
+      builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
+      modules: [{
+        label: "Basic Vocabulary and Greetings \u{1F308}",
+        path: 'basicwords'
+      }, {
+        label: "Food and Drink \u{1f374}",
+        path: 'foodwords'
+      }],
+      currentModule: {},
+      speech: {}
     };
   }
 };
 </script>
 
 <style lang="css" scoped>
-
 .vocab-builder-view {
   background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
@@ -373,5 +406,4 @@ export default {
   font-family: 'Quicksand', sans-serif;
   position: relative;
 }
-
 </style>

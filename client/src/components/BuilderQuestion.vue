@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="word && displayQuestion">What is the English for <strong>{{ text }}</strong> ?</p>
+    <p v-if="text && displayQuestion">What is the English for <strong>{{ text }}</strong> ?</p>
   </div>
 </template>
 
