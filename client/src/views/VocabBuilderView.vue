@@ -94,11 +94,12 @@ export default {
       if (this.hasBeenRun == false) {
         this.questionWord = this.testingWords[Math.floor(Math.random() * this.testingWords.length)];
         console.log(`new session first word set to ${this.questionWord.English}`)
-      } else
+      } else {
         this.questionWord = this.getQuestionWord();
+      }
       console.log(`trying to play tts for ${this.questionWord.Polish}`)
       this.speech.speak({
-        text: this.questionWord.Polish
+        text: this.questionWord.Polish, queue: false
       }).then(() => {
         console.log(`TTS for ${this.questionWord.Polish} played `)
       }).catch(e => {

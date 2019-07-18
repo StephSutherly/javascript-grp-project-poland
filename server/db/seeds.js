@@ -169,7 +169,7 @@ db.foodwords.insertMany([
 		wordKnown: false
 	},
 	{
-		Polish: "Berger",
+		Polish: "Burger",
 		English: "Burger",
     emoji: "\u{1F354}",
 		timesRight: 0,
