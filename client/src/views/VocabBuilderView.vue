@@ -1,13 +1,15 @@
 <template>
-<div class="vocab-builder-view cf">
-  <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
-  <builder-feedback :builderState="builderState"></builder-feedback>
-  <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
-  <pause-screen :builderState="builderState" :seenWords="seenWords" :modules="modules"></pause-screen>
-  <continue-button :builderState="builderState"></continue-button>
-  <pause-button :builderState="builderState"></pause-button>
-  <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
-</div>
+  <div class="vocab-builder-view cf">
+    <div id="content-wrapper">
+      <builder-question :builderState="builderState" :questionWord="questionWord" :feedbackWord="feedbackWord"></builder-question>
+      <builder-feedback :builderState="builderState"></builder-feedback>
+      <choice-list :builderState="builderState" :buttonWords="buttonWords"></choice-list>
+      <pause-screen :builderState="builderState" :seenWords="seenWords" :modules="modules"></pause-screen>
+      <continue-button :builderState="builderState"></continue-button>
+      <pause-button :builderState="builderState"></pause-button>
+      <new-word :builderState="builderState" :questionWord="questionWord"></new-word>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -403,5 +405,12 @@ export default {
   border-radius: 4px;
   font-family: 'Quicksand', sans-serif;
   position: relative;
+}
+
+#content-wrapper {
+  height: flex;
+  border-radius: 5px;
+  background-color: #cce6ff;
+  padding: 10px;
 }
 </style>

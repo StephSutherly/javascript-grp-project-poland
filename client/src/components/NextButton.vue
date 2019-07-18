@@ -23,8 +23,9 @@ export default {
     position: absolute;
     display: block;
     top: 20px;
-    right: 15px;
+    right: 22px;
     min-width: 150px;
+
 }
 button {
   color: black;

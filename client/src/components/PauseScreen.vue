@@ -79,9 +79,6 @@ export default {
 
 #pause-screen, #start-screen  {
   height: flex;
-  border-radius: 5px;
-  background-color: #cce6ff;
-  padding: 10px;
 }
 
 h2 {

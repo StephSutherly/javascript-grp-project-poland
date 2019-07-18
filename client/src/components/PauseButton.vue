@@ -47,7 +47,7 @@ button {
     text-align: center;
     position: absolute;
     top: 20px;
-    right: 15px;
+    right: 22px;
     min-width: 150px;
 }
 
