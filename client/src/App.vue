@@ -35,9 +35,14 @@ export default {
   background-size: cover;
 	background-attachment: fixed;
 	opacity: 0.9;
+	/* height: 100vh; */
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: space-between
+
 }
 #app > .container {
-	min-height: 750px;
 }
 #app > .container,
 #app-footer {
@@ -47,7 +52,6 @@ export default {
 	min-height: 700px;
 	height: 100%;
 	background: white;
-	/* opacity: 0.9; */
 	padding: 15px;
 	font-family: Arial;
 }

@@ -59,7 +59,7 @@ export default {
       this.builderState = "testing";
     });
 
-    
+
     this.speech = new Speech()
     this.speech.init({
       'volume': 1,
@@ -395,7 +395,6 @@ export default {
 .vocab-builder-view {
   background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
-  height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
