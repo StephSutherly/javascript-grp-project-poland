@@ -56,6 +56,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.view-page {
+  width: 90%;
+  margin: 20px 5% 20px 3.5%;
+  border-radius: 4px;
+  background: rgba(255,255,255,.85);
+}
+
 #page-tabs {
   display: flex;
 }

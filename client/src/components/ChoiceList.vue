@@ -1,11 +1,15 @@
 <template>
+  <div>
   <div id="button-list" v-if="displayChoiceButtons">
     <choice-button :word="buttonWords[0]"></choice-button>
     <choice-button :word="buttonWords[1]"></choice-button>
     <choice-button :word="buttonWords[2]"></choice-button>
     <choice-button :word="buttonWords[3]"></choice-button>
-    <next-button v-if="displayNextButton"></next-button>
   </div>
+  <div id="button-list" v-if="displayNextButton">
+    <next-button ></next-button>
+  </div>
+</div>
 </template>
 
 <script>

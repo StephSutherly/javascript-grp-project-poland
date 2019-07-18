@@ -65,7 +65,7 @@ export default {
   width: 90%;
   margin: 20px 5% 20px 3.5%;
   border-radius: 4px;
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.85);
 }
 .section {
   width: 80%;

@@ -19,7 +19,7 @@
       <p><span>Religions</span> (Based on 2011 survey of 91.2% of the population) Roman Catholic 87.5% (around 75% who are practicing), Opting out of responding 7.1%, Non-believer 2.4%, Not stated 1.6%, Eastern Orthodox 1.3%, Other religions 1%.</p>
 
       <p><span>Government</span> Republic</p>
-      
+
       <p><span>Currency:</span> Polish Zloty</p>
 
       <p><span>Local time</span> GMT+01:00</p>
@@ -67,7 +67,7 @@ export default {
   width: 500px;
   justify-content: space-between;
   background: white;
-  opacity: 0.9;
+  opacity: 0.85;
   border-radius: 4px;
   font-family: Arial;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <button v-on:click="handleClick">Next</button>
+    <button v-on:click="handleClick">Next {{"\u{27A1}"}}</button>
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
     display: block;
     top: 20px;
     right: 15px;
+    min-width: 150px;
 }
 button {
   color: black;
@@ -35,10 +36,8 @@ button {
   border-radius: 5px;
   border: 2px solid green;
   margin: 2px;
-  /* float: right; */
   align: center;
-  /* position: absolute; */
-  /* top: 40%; */
+  width: 100%;
 }
 
 </style>
