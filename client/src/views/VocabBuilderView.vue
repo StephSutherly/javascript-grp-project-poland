@@ -393,7 +393,7 @@ export default {
 
 <style lang="css" scoped>
 .vocab-builder-view {
-  background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
+  background: linear-gradient(to bottom, rgba(255,255,255,.95) 50%, rgba(220,20,60,.95) 50% );
   display: block;
   background-position: center;
   background-repeat: no-repeat;

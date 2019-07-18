@@ -38,7 +38,7 @@ export default {
   background-color: #80bfff;
   height: 50px;
   line-height: 50px;
-
+  padding-left: 20px;
 }
 .navbar a {
   float: left;

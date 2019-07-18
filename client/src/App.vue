@@ -35,7 +35,6 @@ export default {
   background-size: cover;
 	background-attachment: fixed;
 	opacity: 0.9;
-	/* height: 100vh; */
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
