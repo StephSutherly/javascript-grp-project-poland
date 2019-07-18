@@ -1,6 +1,6 @@
 <template>
 	<select v-on:change="handleChange" v-model="selected">
-		<option v-for="module in this.modules" v-bind:value="module"> {{module.label}} </option>
+		<option v-for="(module, index) in this.modules" v-bind:value="module"> {{module.label}} </option>
 	</select>
 </template>
 

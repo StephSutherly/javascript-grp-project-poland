@@ -72,11 +72,8 @@ export default {
     }).catch(err => {
       console.error("tts - an error occured while initializing : ", err)
     })
-
-
-
-
   },
+
   methods: {
     getModule: function () {
       console.log(`fetching from http://localhost:3000/api/${this.currentModule.path}/`)
@@ -109,8 +106,8 @@ export default {
       this.buttonWords = this.getButtonWords();
       this.hasBeenRun = true
       this.seenWords = this.getSeenWords();
-
     },
+
     getTestingWords: function () {
       if (this.isNewModule()) {
         let firstTwoWords = this.allWords.filter((word) => word.studyOrder < 3)
