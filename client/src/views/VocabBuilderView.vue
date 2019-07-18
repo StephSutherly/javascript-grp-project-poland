@@ -59,6 +59,7 @@ export default {
       this.builderState = "testing";
     });
 
+    
     this.speech = new Speech()
     this.speech.init({
       'volume': 1,
@@ -365,6 +366,13 @@ export default {
 		}
 	},
   data() {
+    let modulesarray= [{
+      label: "Basic Vocabulary and Greetings \u{1F308}",
+      path: 'basicwords'
+    }, {
+      label: "Food and Drink \u{1f374}",
+      path: 'foodwords'
+    }]
     return {
       allWords: [],
       testingWords: [],
@@ -375,14 +383,8 @@ export default {
       seenWords: [],
       newWord: {},
       builderState: "start", ///"testing" "won" "lost" "pause" "start" "newWord"
-      modules: [{
-        label: "Basic Vocabulary and Greetings \u{1F308}",
-        path: 'basicwords'
-      }, {
-        label: "Food and Drink \u{1f374}",
-        path: 'foodwords'
-      }],
-      currentModule: {},
+      modules: modulesarray,
+      currentModule: modulesarray[0],
       speech: {}
     };
   }

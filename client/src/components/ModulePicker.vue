@@ -17,7 +17,7 @@ export default {
 	props: ['modules'],
 	data() {
 		return {
-			selected: {label: "Basic Vocabulary and Greetings", path: 'basicwords'}
+			selected: this.modules[0]
 		}
 	}
 }
