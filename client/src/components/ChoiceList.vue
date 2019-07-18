@@ -1,9 +1,9 @@
 <template>
-  <div id="button-list">
-    <choice-button v-if="displayChoiceButtons" :word="buttonWords[0]"></choice-button>
-    <choice-button v-if="displayChoiceButtons" :word="buttonWords[1]"></choice-button>
-    <choice-button v-if="displayChoiceButtons" :word="buttonWords[2]"></choice-button>
-    <choice-button v-if="displayChoiceButtons" :word="buttonWords[3]"></choice-button>
+  <div id="button-list" v-if="displayChoiceButtons">
+    <choice-button :word="buttonWords[0]"></choice-button>
+    <choice-button :word="buttonWords[1]"></choice-button>
+    <choice-button :word="buttonWords[2]"></choice-button>
+    <choice-button :word="buttonWords[3]"></choice-button>
     <next-button v-if="displayNextButton"></next-button>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
 
 #button-list {
   display: flex;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 /* choice-button {
