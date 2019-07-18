@@ -3,32 +3,36 @@ db.dropDatabase();
 
 db.basicwords.insertMany([
 {
-  Polish: "Cześć \u{1F44B}",
+  Polish: "Cześć",
   English: "Hi",
+  emoji: "\u{1F44B}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 1,
   wordKnown: false
 },
 {
-  Polish: "Proszę \u{1F64F}",
+  Polish: "Proszę",
   English: "Please",
+  emoji: "\u{1F64F}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 2,
   wordKnown: true
 },
 {
-  Polish: "Dziękuję \u{1F919}",
+  Polish: "Dziękuję",
   English: "Thank you",
+  emoji: "\u{1F919}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 3,
   wordKnown: false
 },
 {
-  Polish: "Dzień dobry! \u{23F0}",
+  Polish: "Dzień dobry!",
   English: "Good morning",
+  emoji: "\u{23F0}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 4,
@@ -36,88 +40,99 @@ db.basicwords.insertMany([
 
 },
 {
-  Polish: "Dobranoc! \u{1F319}",
+  Polish: "Dobranoc!",
   English: "Good night!",
+  emoji: "\u{1F319}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 5,
   wordKnown: true
 },
 {
-  Polish: "Tak \u{1F44D}",
+  Polish: "Tak",
   English: "Yes",
+  emoji: "\u{1F44D}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 6,
   wordKnown: false
 },
 {
-  Polish: "Nie \u{1F44E}",
+  Polish: "Nie",
   English: "No",
+  emoji: "\u{1F44E}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 7,
   wordKnown: false
 },
 {
-  Polish: "Może \u{1F914}",
+  Polish: "Może",
   English: "Maybe",
+  emoji: "\u{1F914}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 8,
   wordKnown: true
 },
 {
-  Polish: "Nazywam się... \u{1F449}\u{1F601}",
+  Polish: "Nazywam się...",
   English: "My name is...",
+  emoji: "\u{1F449}\u{1F601}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 9,
   wordKnown: false
 },
 {
-  Polish: "Dobrze \u{1F44C}",
+  Polish: "Dobrze",
   English: "Ok",
+  emoji: "\u{1F44C}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 10,
   wordKnown: true
 },
 {
-  Polish: "Do widzenia! \u{270C}",
+  Polish: "Do widzenia!",
   English: "Good bye!",
+  emoji: "\u{270C}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 11,
   wordKnown: false
 },
 {
-  Polish: "Przepraszam \u{1F97A}",
+  Polish: "Przepraszam",
   English: "Excuse me",
+  emoji: "\u{1F97A}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 12,
   wordKnown: true
 },
 {
-  Polish: "Pomoc \u{1F691}",
+  Polish: "Pomoc",
   English: "Help",
+  emoji: "\u{1F691}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 13,
   wordKnown: false
 },
 {
-  Polish: "Dzisiaj \u{1F31E}",
+  Polish: "Dzisiaj",
   English: "Today",
+  emoji: "\u{1F31E}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 14,
   wordKnown: true
 },
 {
-  Polish: "Jutro \u{1F31E} \u{1F449}",
+  Polish: "Jutro",
   English: "Tomorrow",
+  emoji: "\u{1F31E} \u{1F449}",
   timesRight: 0,
   timesWrong: 0,
   studyOrder: 15,
@@ -127,32 +142,36 @@ db.basicwords.insertMany([
 
 db.foodwords.insertMany([
 	{
-		Polish: "Jabłko \u{1F34E}",
+		Polish: "Jabłko",
 		English: "Apple",
+    emoji: "\u{1F34E}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 1,
 		wordKnown: false
 	},
 	{
-		Polish: "Banan \u{1F34C}",
+		Polish: "Banan",
 		English: "Banana",
+    emoji: "\u{1F34C}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 2,
 		wordKnown: true
 	},
 	{
-		Polish: "Truskawka \u{1F353}",
+		Polish: "Truskawka",
 		English: "Strawberry",
+    emoji: "\u{1F353}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 3,
 		wordKnown: false
 	},
 	{
-		Polish: "Berger \u{1F354}",
+		Polish: "Berger",
 		English: "Burger",
+    emoji: "\u{1F354}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 4,
@@ -160,40 +179,45 @@ db.foodwords.insertMany([
 
 	},
 	{
-		Polish: "Pizza \u{1F355}",
+		Polish: "Pizza",
 		English: "Pizza",
+    emoji: "\u{1F355}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 5,
 		wordKnown: true
 	},
 	{
-		Polish: "Ciastko \u{1F382}",
+		Polish: "Ciastko",
 		English: "Cake",
+    emoji: "\u{1F382}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 6,
 		wordKnown: false
 	},
 	{
-		Polish: "Arbuz \u{1F349}",
+		Polish: "Arbuz",
 		English: "Watermelon",
+    emoji: "\u{1F349}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 7,
 		wordKnown: false
 	},
 	{
-		Polish: "Piwo \u{1F37A}",
+		Polish: "Piwo",
 		English: "Beer",
+    emoji: "\u{1F37A}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 8,
 		wordKnown: true
 	},
 	{
-		Polish: "Wino \u{1F377}",
+		Polish: "Wino",
 		English: "Wine",
+    emoji: "\u{1F377}",
 		timesRight: 0,
 		timesWrong: 0,
 		studyOrder: 9,

@@ -82,12 +82,6 @@ export default {
       this.buttonWords = this.getButtonWords();
 			this.hasBeenRun=true
       this.seenWords = this.getSeenWords();
-			// let array = this.seenWords;
-			// console.clear()
-			// console.log("seenWords = ")
-      // if (array.length === 0) console.log("seenWords empty");
-			// for (let i = 0; i < array.length; i++)
-			// console.log(array[i].English);
     },
     getTestingWords: function() {
 			if (this.isNewModule())
@@ -125,8 +119,6 @@ export default {
 							console.log(`adding new word ${newWord.English}`)
 					}
 				}
-
-
 				if (newTestingArray.length<3)  //if there aren't at least 3 words to cycle through, fill up with ready words if possible
 				{
 					console.group("ready fillers needed")
@@ -147,8 +139,6 @@ export default {
 				}
 				else
 					console.log(`newTestingArray length is ${newTestingArray.length}, no unready fillers required`)
-
-
 				if (newTestingArray.length<3)  //if there still aren't at least 3 words to cycle through, fill up with  Knownwords if possible
 				{
 					console.group("known fillers needed")
@@ -169,8 +159,6 @@ export default {
 				}
 				else
 					console.log(`newTestingArray length is ${newTestingArray.length}, no ready fillers required`)
-
-
 				return newTestingArray
 			}
     },
@@ -192,8 +180,6 @@ export default {
       }
 			tempButtonWords.push(this.questionWord);
 			tempButtonWords=this.shuffle(tempButtonWords);
-
-
       return tempButtonWords;
     },
     getQuestionWord: function() {
@@ -211,8 +197,6 @@ export default {
 				possibleQuestionWords.splice(pos, 1);
 			else
 				console.log("previous word not in possible question words")
-
-			//console.clear()
 			console.log("possibleQuestionWords =")
 			if (possibleQuestionWords.length === 0) console.log("possibleQuestionWords empty");
 			else
@@ -220,7 +204,6 @@ export default {
 				for (let word of possibleQuestionWords)
 					console.log(word.English,word.studyOrder);
 			}
-
       return possibleQuestionWords[Math.floor(Math.random() * possibleQuestionWords.length)];
 		},
     getSeenWords: function() {
@@ -313,38 +296,38 @@ export default {
 				return false
 		},
 		addFillerReadyWordTo: function(arrayToAddTo){
-						let possibleFillerWords = this.allTouchedWordsNotKnownReady()
-						if (possibleFillerWords.length===0)
-						{
-							return false;
-						}
+			let possibleFillerWords = this.allTouchedWordsNotKnownReady()
+			if (possibleFillerWords.length===0)
+			{
+				return false;
+			}
 
-						console.log("possible ready filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
+			console.log("possible ready filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
-						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
-						//console.log("newword",newWord)
-						arrayToAddTo.push(newWord)
-						let pos = possibleFillerWords.indexOf(newWord)
-						possibleFillerWords.splice(pos,1)
-						console.log("filler word added to testing Words:", newWord.English)
-						return true
+			let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
+			//console.log("newword",newWord)
+			arrayToAddTo.push(newWord)
+			let pos = possibleFillerWords.indexOf(newWord)
+			possibleFillerWords.splice(pos,1)
+			console.log("filler word added to testing Words:", newWord.English)
+			return true
 		},
 		addFillerKnownWordTo: function(arrayToAddTo){
-						let possibleFillerWords = this.allTouchedWordsKnown()
-						if (possibleFillerWords.length===0)
-						{
-							return false;
-						}
+			let possibleFillerWords = this.allTouchedWordsKnown()
+			if (possibleFillerWords.length===0)
+			{
+				return false;
+			}
 
-						console.log("possible known filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
+			console.log("possible known filter words:",possibleFillerWords.map(word=>(word.English+" "+word.studyOrder)).join(' ,'))
 
-						let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
-						//console.log("newword",newWord)
-						arrayToAddTo.push(newWord)
-						let pos = possibleFillerWords.indexOf(newWord)
-						possibleFillerWords.splice(pos,1)
-						console.log("filler word added to testing Words:", newWord.English)
-						return true
+			let newWord = possibleFillerWords[Math.floor(Math.random() * possibleFillerWords.length)]
+			//console.log("newword",newWord)
+			arrayToAddTo.push(newWord)
+			let pos = possibleFillerWords.indexOf(newWord)
+			possibleFillerWords.splice(pos,1)
+			console.log("filler word added to testing Words:", newWord.English)
+			return true
 		},
 		shuffle:function(a){     ///taken from wikipedia
     var j, x, i;
@@ -378,10 +361,8 @@ export default {
 <style lang="css" scoped>
 
 .vocab-builder-view {
-  /* background: url('https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Flag_of_Poland.png') no-repeat; */
   background: linear-gradient(to bottom, rgba(255,255,255,.95) 120px, rgba(220,20,60,.95) 120px );
   display: block;
-  /* min-height: 240px; */
   height: 700px;
   background-position: center;
   background-repeat: no-repeat;

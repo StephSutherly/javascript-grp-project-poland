@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="word && displayQuestion">What is the English for <strong>{{ word }}</strong> ?</p>
+    <p v-if="word && displayQuestion">What is the English for <strong>{{ text }}</strong> ?</p>
   </div>
 </template>
 
@@ -8,11 +8,11 @@
 export default {
 	name: "builder-question",
 	computed:{
-		word: function(){
+		text: function(){
 			if (this.builderState==="testing" && this.questionWord)
-				return this.questionWord.Polish
+				return this.questionWord.Polish + " " + this.questionWord.emoji
 			else if ( (this.builderState==="won"|| this.builderState==="lost") && this.feedbackWord)
-				return this.feedbackWord.Polish
+				return this.feedbackWord.Polish + " " + this.questionWord.emoji
 			else
 				return ""
 		},
